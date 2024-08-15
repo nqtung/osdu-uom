@@ -1,7 +1,7 @@
 # OSDU/Energistics Unit of Measure Standard (UoM)
 
 The OSDU UoM standard is a great idea, but its definition is hard to utilize in case an actual
-implementation is needed.
+implementation of this standard is needed.
 
 The GeoSoft approach contains the minimal part of the standard that is required to give UoM support
 to any software system.
@@ -11,15 +11,15 @@ to any software system.
 
 The present repository contains the following:
 
-* `xml/UnitDict_2.2.xml`  Version 2.2 of the Energistics Uom standard (2014) kept for reference
-* `json/quantities.json`  A list of all quantities (250+) such as _pressure_ or _length_ etc.
-* `json/quantities.json`  A list of all units (1200+) such as _m_ or _bar_ etc.
+* `json/quantities.json`  A list of all quantities (250+) such as _pressure_ and _length_ etc.
+* `json/quantities.json`  A list of all units (1200+) such as _m_ and _bar_ etc.
+* `xml/UnitDict_2.2.xml`  Version 2.2 (2014) of the Energistics UoM standard (2014) kept for reference
 
 
 
 ## Quantities and Units
 
-A quantity is defined with a name, an optional description and the list of units that can measure it, like:
+A _quantity_ is defined with its _name_, an optional _description_ and the list of _units_ that can measure it, like:
 
 ```JSON
 {
@@ -39,9 +39,9 @@ A quantity is defined with a name, an optional description and the list of units
 }
 ```
 
-This first unit listed is defined as the _base unit for the quantity.
+The first unit listed is defined as the _base unit for the quantity.
 
-A unit is defined with a name, a symbol, a display symbol and factors to convert it to the base unit
+A _unit_ is defined with its _name_, a _symbol_, a _display symbol_ and factors to convert it to the base unit
 of the quantity, like:
 
 ```JSON
@@ -56,7 +56,7 @@ of the quantity, like:
 }
 ```
 
-Converting a value in a given unit into its corresponding _base_ unit is done by the formula:
+Converting a value in a given unit into its corresponding base unit is done by the formula:
 
 ```
 baseValue = (a * value + b) / (c * value + d)
@@ -65,8 +65,8 @@ baseValue = (a * value + b) / (c * value + d)
 
 ## Display units
 
-Unit symbols should be regarded as _IDs_ suitable for persistent storeag etc., but clients
-should never expose these directly in a user interface. For this reason an UTF8 _display symbol_
+Unit symbols should be regarded as _IDs_ suitable for persistent storage etc., but clients
+should never expose these directly in a user interface. For UI purposes a UTF8 _display symbol_
 is provided with every unit, such as:
 
 
@@ -77,5 +77,4 @@ is provided with every unit, such as:
 | cubic centimeters     | cm3         | cm<sup>3</sup>   |
 | degrees Celcius       | degC        | &deg;C           |
 | meter/second squared  | m/s2        | m/s<sup>2</sup>  |
-| etc.                  |             |                  |
 
