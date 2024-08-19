@@ -1,19 +1,32 @@
 # OSDU/Energistics Unit of Measure Standard (UoM)
 
-The OSDU UoM standard is a great idea, but its definition is hard to utilize in case an actual
-implementation of this standard is needed.
+The Energistics/OSDU Unit of Measurements (UoM) is a great standard, covering nearly 200 different quantities (length, pressure, temperature, resistivity, etc.)
+and over 2000 units (m, ft, bar, Pa, etc.), complete with conversion factors.
+This is a foundational standard for any scientific software.
 
-The GeoSoft approach contains the minimal part of the standard that is required to give UoM support
-to any software system.
+However, the standard has some deficiencies:
+
+* It is not publicly available and is limited to OSDU members only.
+* The definitions are convoluted, making it awkward for practical use.
+* It lacks a simple reference implementation or proof of concept (PoC).
+* Display units are not supported.
+
+The present repository addresses all these issues.
+It includes a single, streamlined JSON file capturing the essentials of the standard that can be utilized
+with simplicity on any programming platform in just a few lines of code.
+
+Reference implementations are available for [Java]() and [C#/.Net]().
+
+Best of all, it includes proper display units, allowing you to use symbols like °C, µΩ, or m³
+instead of the common but less readable degC, uohm, or m3 etc.
+
 
 
 ## Repository content
 
 The present repository contains the following:
 
-* `json/quantities.json`  A list of all quantities (250+) such as _pressure_ and _length_ etc.
-* `json/quantities.json`  A list of all units (1200+) such as _m_ and _bar_ etc.
-* `xml/UnitDict_2.2.xml`  Version 2.2 (2014) of the Energistics UoM standard (2014) kept for reference
+* `json/uom.json`   A list of all units and quantities of the Energistics/OSDU UoM standard
 
 
 
@@ -46,10 +59,10 @@ of the quantity, like:
 
 ```JSON
 {
-  "name": "feet/barrel",
-  "symbol": "ft/bbl",
-  "displaySymbol": "ft/bbl",
-  "a": 1.917134,
+  "name": "cubic centimetre",
+  "symbol": "cm3",
+  "displaySymbol": "cm³",
+  "a": 0.0000010,
   "b": 0.0,
   "c": 0.0,
   "d": 1.0
