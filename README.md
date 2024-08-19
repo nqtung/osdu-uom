@@ -16,10 +16,13 @@ The present solution addresses all these issues.
 It includes a single, streamlined JSON file capturing the essentials of the standard,
 and which can be applied to any programming platform in just a few lines of code.
 
-Reference implementations are available for [Java](https://github.com/geosoft-as/juom) and [C#/.Net](soon).
+Reference implementations are available for
+[Java](https://github.com/geosoft-as/juom)
+and (soon)
+[C#/.Net](https://github.com/geosoft-as/nuom).
 
-Best of all, it includes proper display units, allowing you to use symbols like °C, µΩ, or m³
-instead of the common but less readable degC, uohm, or m3 etc.
+Best of all, it includes proper _display units_, allowing the use of symbols like *°C*, *µΩ*, or *m³*
+instead of the common but less readable _degC_, _uohm_, or _m3_ etc.
 
 
 
