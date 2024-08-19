@@ -56,10 +56,10 @@ A _quantity_ is defined with its _name_, an optional _description_ and the list 
 }
 ```
 
-The first unit listed is defined as the _base unit for the quantity.
+The first unit listed is defined as the _base unit_ for the quantity.
 
-A _unit_ is defined with its _name_, a _symbol_, a _display symbol_ and factors to convert it to the base unit
-of the quantity, like:
+A _unit_ is defined with its _name_, a _symbol_, a _display symbol_ and the factors to convert
+it to the base unit of the quantity, like:
 
 ```JSON
 {
@@ -73,7 +73,7 @@ of the quantity, like:
 }
 ```
 
-Converting a value in a given unit into its corresponding base unit is done by the formula:
+Converting a value in a given unit into its corresponding base unit is done by:
 
 ```
 baseValue = (a * value + b) / (c * value + d)
