@@ -1,21 +1,22 @@
 # OSDU/Energistics Unit of Measure Standard (UoM)
 
-The Energistics/OSDU Unit of Measurements (UoM) is a great standard, covering nearly 200 different quantities (length, pressure, temperature, resistivity, etc.)
-and over 2000 units (m, ft, bar, Pa, etc.), complete with conversion factors.
+The Energistics/OSDU Unit of Measurements (UoM) is a great standard,
+covering nearly 200 different quantities (_length_, _pressure_, _temperature_, _resistivity_, etc.)
+and over 2000 units (_m_, _ft_, _bar_, _Pa_, etc.), complete with conversion factors.
 This is a foundational standard for any scientific software.
 
 However, the standard has some deficiencies:
 
-* It is not publicly available and is limited to OSDU members only.
+* It is not publicly available as it is limited to OSDU members only.
 * The definitions are convoluted, making it awkward for practical use.
 * It lacks a simple reference implementation or proof of concept (PoC).
 * Display units are not supported.
 
-The present repository addresses all these issues.
-It includes a single, streamlined JSON file capturing the essentials of the standard that can be utilized
-with simplicity on any programming platform in just a few lines of code.
+The present solution addresses all these issues.
+It includes a single, streamlined JSON file capturing the essentials of the standard,
+and which can be applied to any programming platform in just a few lines of code.
 
-Reference implementations are available for [Java]() and [C#/.Net]().
+Reference implementations are available for [Java](https://github.com/geosoft-as/juom) and [C#/.Net](soon).
 
 Best of all, it includes proper display units, allowing you to use symbols like °C, µΩ, or m³
 instead of the common but less readable degC, uohm, or m3 etc.
