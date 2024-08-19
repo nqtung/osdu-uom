@@ -21,7 +21,7 @@ Reference implementations are available for
 and (soon)
 [C#/.Net](https://github.com/geosoft-as/nuom).
 
-Best of all, it includes proper _display units_, allowing the use of symbols like *°C*, *µΩ*, or *m³*
+Best of all, it includes proper _display units_, allowing the use of symbols like **°C**, **µΩ**, or **m³**
 instead of the common but less readable _degC_, _uohm_, or _m3_ etc.
 
 
