@@ -1,9 +1,9 @@
 # OSDU/Energistics Unit of Measure Standard (UoM)
 
-The Energistics/OSDU Unit of Measurements (UoM) is a great standard,
+The Energistics/OSDU Unit of Measurements (UoM) is an impressive standard,
 covering nearly 200 different quantities (_length_, _pressure_, _temperature_, _resistivity_, etc.)
 and over 2000 units (_m_, _ft_, _bar_, _Pa_, etc.), complete with conversion factors.
-This is a foundational standard for any scientific software.
+This is a great foundation for any scientific software.
 
 However, the standard has some deficiencies:
 
