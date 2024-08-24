@@ -1,0 +1,4 @@
+angstrom = ångström
+ms/2 = ms/2
+m3/scm(15C) = m³/scm(15°C)
+m3/scm(0C) = m³/scm(0°C)

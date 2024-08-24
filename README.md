@@ -36,12 +36,11 @@ The present repository contains the following:
 
 ## Quantities and Units
 
-A _quantity_ is defined with its _name_, an optional _description_ and the list of _units_ that can measure it, like:
+A _quantity_ is defined with its _name_, and the list of _units_ that can measure it, like:
 
 ```JSON
 {
   "name": "length per volume",
-  "description": null,
   "units": [
     "per square metre",
     "feet/barrel",
@@ -95,3 +94,22 @@ is provided with every unit, such as:
 | degrees Celcius       | degC        | &deg;C           |
 | meter/second squared  | m/s2        | m/s<sup>2</sup>  |
 
+
+
+## Access libraries
+
+The repository contains access libraries for UoM in a different programming environments:
+
+### Java
+
+
+
+### C#
+
+
+
+### JavaScript
+
+
+
+### Python
