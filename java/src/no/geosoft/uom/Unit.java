@@ -28,6 +28,9 @@ public final class Unit
   /** Conversion factor d for converting to base unit. */
   private final double d_;
 
+  /** Dislay symbol suitable for user presentation. */
+  private final String displaySymbol_;
+
   /**
    * Create a new unit.
    * <p>
@@ -44,15 +47,16 @@ public final class Unit
    * temperature a shift (<em>b</em>) is used as well, while c and d
    * is in practice never used.
    *
-   * @param name    Name of unit such as "meter". Non-null.
-   * @param symbol  Symbol of unit such as "m". Non-null.
-   * @param a       Conversion factor a for converting to base unit.
-   * @param b       Conversion factor b for converting to base unit.
-   * @param c       Conversion factor c for converting to base unit.
-   * @param d       Conversion factor d for converting to base unit.
-   * @throws IllegalArgumentException  If name or symbol is null.
+   * @param name           Name of unit such as "meter". Non-null.
+   * @param symbol         Symbol of unit such as "m". Non-null.
+   * @param a              Conversion factor a for converting to base unit.
+   * @param b              Conversion factor b for converting to base unit.
+   * @param c              Conversion factor c for converting to base unit.
+   * @param d              Conversion factor d for converting to base unit.
+   * @param displaySymbol  Display symbol suitable for user presentation.
+   * @throws IllegalArgumentException  If name, symbol or displaySymbol is null.
    */
-  public Unit(String name, String symbol, double a, double b, double c, double d)
+  public Unit(String name, String symbol, double a, double b, double c, double d, String displaySymbol)
   {
     if (name == null)
       throw new IllegalArgumentException("name cannot be null");
@@ -60,12 +64,16 @@ public final class Unit
     if (symbol == null)
       throw new IllegalArgumentException("symbol cannot be null");
 
+    if (displaySymbol == null)
+      throw new IllegalArgumentException("displaySymbol cannot be null");
+
     name_ = name;
     symbol_ = symbol;
     a_ = a;
     b_ = b;
     c_ = c;
     d_ = d;
+    displaySymbol_ = displaySymbol;
   }
 
   /**
@@ -126,6 +134,16 @@ public final class Unit
   double getD()
   {
     return d_;
+  }
+
+  /**
+   * Return the display symbol of this unit.
+   *
+   * @return  The display symbol of this unit. Never null.
+   */
+  public String getDisplaySymbol()
+  {
+    return displaySymbol_;
   }
 
   /**

@@ -17,9 +17,6 @@ public final class Quantity
   /** Name of this quantity. Non-null. */
   private final String name_;
 
-  /** Optional description. Null if none provided. */
-  private final String description_;
-
   /**
    * List of units for this quantity. Non-null.
    * The list may be empty, but if it's not, the first unit is
@@ -31,16 +28,14 @@ public final class Quantity
    * Create a new quantity instance.
    *
    * @param name         Name of quantity, such as "length". Non-null.
-   * @param description  Optional description. Null if none provided.
    * @throws IllegalArgumentException  If name is null.
    */
-  public Quantity(String name, String description)
+  public Quantity(String name)
   {
     if (name == null)
       throw new IllegalArgumentException("name cannot be null");
 
     name_ = name;
-    description_ = description;
   }
 
   /**
@@ -51,16 +46,6 @@ public final class Quantity
   public String getName()
   {
     return name_;
-  }
-
-  /**
-   * Return description of this quantity.
-   *
-   * @return  Description of this quantity. Null if none provided.
-   */
-  public String getDescription()
-  {
-    return description_;
   }
 
   /**
@@ -110,8 +95,6 @@ public final class Quantity
   {
     StringBuilder s = new StringBuilder();
     s.append("Name: " + name_ + "\n");
-    if (description_ != null)
-      s.append("Description: " + description_ + "\n");
     for (Unit unit : units_)
       s.append("  " + unit + "\n");
 

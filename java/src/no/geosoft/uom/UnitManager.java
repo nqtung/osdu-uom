@@ -43,22 +43,16 @@ import javax.json.JsonReader;
 public final class UnitManager
 {
   /** The XML file with the Energistics unit database. */
-  private final static String UNITS_FILE = "witsmlUnitDict-2.2.xml";
+  private final static String UNITS_FILE = "uom.json";
 
   /** Property file holding unit aliases. */
   private final static String UNIT_ALIASES_FILE = "unit_aliases.txt";
-
-  /** Property file holding display symbols. */
-  private final static String DISPLAY_SYMBOLS_FILE = "display_symbols.txt";
 
   /** The sole instance of this class. */
   private final static UnitManager instance_ = new UnitManager();
 
   /** Mapping between unit symbol alias and their equivalent "official" unit symbol. */
   private final Properties unitAliases_ = new Properties();
-
-  /** Mapping between unit symbol and its equivalent display symbol. */
-  private final Properties displaySymbols_ = new Properties();
 
   /** Quantities known by this manager. */
   private final Collection<Quantity> quantities_ = new CopyOnWriteArraySet<>();
@@ -78,11 +72,8 @@ public final class UnitManager
    */
   private UnitManager()
   {
-    //loadFromXml();
-    //loadFromOriginalJson();
     loadFromJson();
     loadUnitAliases();
-    loadDisplaySymbols();
   }
 
   /**
@@ -108,42 +99,6 @@ public final class UnitManager
       throw new IllegalArgumentException("unitSymbol cannot be null");
 
     unitAliases_.setProperty(unitSymbolAlias.toLowerCase(), unitSymbol);
-  }
-
-  /**
-   * Set the specified display symbol for the given unit symbol.
-   *
-   * @param unitSymbol     Official unit symbol. Non-null.
-   * @param displaySymbol  Associated display symbol. Non-null.
-   * @throws IllegalArgumentException  If unitSymbol or displaySymbol is null.
-   */
-  public void setDisplaySymbol(String unitSymbol, String displaySymbol)
-  {
-    if (unitSymbol == null)
-      throw new IllegalArgumentException("unitSymbol cannot be null");
-
-    if (displaySymbol == null)
-      throw new IllegalArgumentException("displaySymbol cannot be null");
-
-    displaySymbols_.setProperty(unitSymbol, displaySymbol);
-  }
-
-  /**
-   * Set the specified display symbol for the given unit.
-   *
-   * @param unit           Unit to set display symbol of. Non-null.
-   * @param displaySymbol  Associated display symbol. Non-null.
-   * @throws IllegalArgumentException  If unitSymbol or displaySymbol is null.
-   */
-  public void setDisplaySymbol(Unit unit, String displaySymbol)
-  {
-    if (unit == null)
-      throw new IllegalArgumentException("unit cannot be null");
-
-    if (displaySymbol == null)
-      throw new IllegalArgumentException("displaySymbol cannot be null");
-
-    setDisplaySymbol(unit.getSymbol(), displaySymbol);
   }
 
   /**
@@ -477,132 +432,6 @@ public final class UnitManager
   }
 
   /**
-   * Return the display symbol for the corresponding unit symbol.
-   *
-   * @param unitSymbol  Unit symbol to get display symbol of. As a convenience
-   *                    for the client, null is allowed, in case an empty string is
-   *                    returned.
-   * @return            Display symbol of specified unit symbol.
-   *                    Empty string if unitless. Never null.
-   */
-  public String getDisplaySymbol(String unitSymbol)
-  {
-    // Convenience to avoid excessive tests in client code
-    if (unitSymbol == null)
-      return "";
-
-    //
-    // See if there is an explicit mapping
-    //
-    if (displaySymbols_.containsKey(unitSymbol))
-      return displaySymbols_.getProperty(unitSymbol);
-
-    if (unitSymbol.toLowerCase(Locale.US).equals("unitless"))
-      return "";
-
-    // Degree symbol in Celsius
-    unitSymbol = unitSymbol.replaceAll("(?i)degc", "\u00b0C"); // case insensitive
-
-    // Degree symbol in Fahrenheit
-    unitSymbol = unitSymbol.replaceAll("(?i)degf", "\u00b0F"); // case insensitive
-
-    // Degree symbol in R
-    unitSymbol = unitSymbol.replaceAll("(?i)degr", "\u00b0R"); // case insensitive
-
-    // Degree symbol in angles
-    unitSymbol = unitSymbol.replaceAll("dega", "\u00b0");
-
-    // Greek ohm symbol for ohm
-    unitSymbol = unitSymbol.replaceAll("ohm", "\u2126");
-
-    int n = unitSymbol.length();
-
-    StringBuilder s = new StringBuilder();
-
-    char prev = ' ';
-    char c;
-    char next = n > 0 ? unitSymbol.charAt(0) : ' ';
-
-    for (int i = 0; i < n; i++) {
-      c = next;
-      next = i < n - 1 ? unitSymbol.charAt(i + 1) : ' ';
-
-      //
-      // Powers of 2
-      //
-      if (c == '2') {
-        s.append(Character.isDigit(next) || Character.isDigit(prev) ? c : '\u00b2');
-      }
-
-      //
-      // Powers of 3
-      //
-      else if (c == '3') {
-        s.append(Character.isDigit(next) || Character.isDigit(prev) ? c : '\u00b3');
-      }
-
-      //
-      // u = micro
-      //
-      else if (c == 'u') {
-        s.append(i == 0 || prev == '/' ? '\u00b5' : c);
-      }
-
-      //
-      // . = multiplication
-      //
-      else if (c == '.') {
-        s.append(Character.isDigit(prev) && Character.isDigit(next) ? c : '\u00b7');
-      }
-
-      //
-      // Anything else
-      //
-      else {
-        s.append(c);
-      }
-
-      prev = c;
-    }
-
-    return s.toString();
-  }
-
-  /**
-   * Return the display symbol for the specified unit.
-   *
-   * @param unit  Unit to get display symbol of. May be null in case
-   *              an empty string is returned.
-   * @return      Display symbol of specified unit. Empty string if unitless.
-   *              Never null.
-   */
-  public String getDisplaySymbol(Unit unit)
-  {
-    return unit != null ? getDisplaySymbol(unit.getSymbol()) : "";
-  }
-
-  /**
-   * Find quantity of the specified name, or create it if it is not found.
-   *
-   * @param quantityName  Name of quantity to find or create. Non-null.
-   * @param description   Quantity description. May be null if
-   *                      no description has been provided.
-   * @return              Requested quantity. Never null.
-   */
-  private Quantity findOrCreateQuantity(String quantityName, String description)
-  {
-    assert quantityName != null : "quantityName cannot be null";
-
-    Quantity quantity = findQuantity(quantityName);
-    if (quantity == null) {
-      quantity = new Quantity(quantityName, description);
-      quantities_.add(quantity);
-    }
-
-    return quantity;
-  }
-
-  /**
    * Load all unit aliases from local properties file.
    */
   private void loadUnitAliases()
@@ -629,53 +458,17 @@ public final class UnitManager
   }
 
   /**
-   * Load all display symbols from local properties file.
+   * Find the specified unit among the set.
+   *
+   * @param units  Units to search. Non-null.
+   * @param name   Symbol of unit to find. Non-null.
+   * @return       The requested unit, or null if not found.
    */
-  private void loadDisplaySymbols()
-  {
-    InputStream stream = null;
-
-    try {
-      stream = UnitManager.class.getResourceAsStream(DISPLAY_SYMBOLS_FILE);
-      displaySymbols_.load(stream);
-    }
-    catch (IOException exception) {
-      // Ignore. If the file is not available we can run without
-    }
-    finally {
-      if (stream != null) {
-        try {
-          stream.close();
-        }
-        catch (IOException exception) {
-          // Ignore.
-        }
-      }
-    }
-  }
-
-  private static double getValue(String value)
-  {
-    if (value.equals("PI"))
-      return Math.PI;
-
-    if (value.equals("2*PI"))
-      return 2 * Math.PI;
-
-    if (value.equals("4*PI"))
-      return 4 * Math.PI;
-
-    try {
-      return Double.parseDouble(value);
-    }
-    catch (NumberFormatException exception) {
-      exception.printStackTrace();
-      return -1.0;
-    }
-  }
-
   private static Unit findUnitBySymbol(Set<Unit> units, String symbol)
   {
+    assert units != null : "units cannot be null";
+    assert symbol != null : "symbol cannot be null";
+
     for (Unit unit : units) {
       if (unit.getSymbol().equals(symbol))
         return unit;
@@ -685,8 +478,18 @@ public final class UnitManager
     return null;
   }
 
+  /**
+   * Find the specified unit among the set.
+   *
+   * @param units  Units to search. Non-null.
+   * @param name   Name of unit to find. Non-null.
+   * @return       The requested unit, or null if not found.
+   */
   private static Unit findUnitByName(Set<Unit> units, String name)
   {
+    assert units != null : "units cannot be null";
+    assert name != null : "name cannot be null";
+
     for (Unit unit : units) {
       if (unit.getName().equals(name))
         return unit;
@@ -696,68 +499,16 @@ public final class UnitManager
     return null;
   }
 
-  private void loadFromOriginalJson()
-  {
-    Set<Unit> units = new HashSet<>();
-
-    try {
-      // Read the Energistics UoM standard
-      InputStream stream = UnitManager.class.getResourceAsStream("Energistics_Unit_of_Measure_Dictionary.json");
-
-      JsonReader reader = Json.createReader(stream);
-      JsonObject energisticsStandard = reader.readObject();
-
-      // Load all units
-      JsonObject unitSet = energisticsStandard.getJsonObject("UnitSet");
-      JsonArray unitObjects = unitSet.getJsonArray("Unit");
-
-      for (JsonObject unitObject : unitObjects.getValuesAs(JsonObject.class)) {
-        String name = unitObject.getString("Name");
-        String symbol = unitObject.getString("Symbol");
-
-        // NOTE: We have a different definition of a, b, c, d than Energistics
-        //       so the switch of order is intentional
-        double a = unitObject.containsKey("B") ? getValue(unitObject.getString("B")) : 1.0;
-        double b = unitObject.containsKey("A") ? getValue(unitObject.getString("A")) : 0.0;
-        double c = unitObject.containsKey("D") ? getValue(unitObject.getString("D")) : 0.0;
-        double d = unitObject.containsKey("C") ? getValue(unitObject.getString("C")) : 1.0;
-        Unit unit = new Unit(name, symbol, a, b, c, d);
-        units.add(unit);
-      }
-
-      // Load all quantities
-      JsonObject quantitySet = energisticsStandard.getJsonObject("QuantityClassSet");
-      JsonArray quantityObjects = quantitySet.getJsonArray("QuantityClass");
-
-      for (JsonObject quantityObject : quantityObjects.getValuesAs(JsonObject.class)) {
-        String name = quantityObject.getString("Name");
-        String description = quantityObject.containsKey("Description") ? quantityObject.getString("Description") : null;
-
-        Quantity quantity = new Quantity(name, description);
-        quantities_.add(quantity);
-
-        String baseUnit = quantityObject.getString("BaseForConversion");
-        JsonArray memberUnits = quantityObject.getJsonArray("MemberUnit");
-        for (JsonString unitSymbol : memberUnits.getValuesAs(JsonString.class)) {
-          Unit unit = findUnitBySymbol(units, unitSymbol.getString());
-          boolean isBaseUnit = unitSymbol.getString().equals(baseUnit);
-
-          quantity.addUnit(unit, isBaseUnit);
-        }
-      }
-    }
-    catch (Exception exception) {
-      exception.printStackTrace();
-    }
-  }
-
+  /**
+   * Load quantities and units from the standard.
+   */
   private void loadFromJson()
   {
     Set<Unit> units = new HashSet<>();
 
     try {
       // Read the Energistics UoM standard
-      InputStream stream = UnitManager.class.getResourceAsStream("uom.json");
+      InputStream stream = UnitManager.class.getResourceAsStream(UNITS_FILE);
 
       JsonReader reader = Json.createReader(stream);
       JsonObject energisticsStandard = reader.readObject();
@@ -767,6 +518,7 @@ public final class UnitManager
       for (JsonObject unitObject : unitObjects.getValuesAs(JsonObject.class)) {
         String name = unitObject.getString("name");
         String symbol = unitObject.getString("symbol");
+        String displaySymbol = unitObject.getString("displaySymbol");
 
         // NOTE: We have a different definition of a, b, c, d than Energistics
         //       so the switch of order is intentional
@@ -774,7 +526,7 @@ public final class UnitManager
         double b = unitObject.getJsonNumber("b").doubleValue();
         double c = unitObject.getJsonNumber("c").doubleValue();
         double d = unitObject.getJsonNumber("d").doubleValue();
-        Unit unit = new Unit(name, symbol, a, b, c, d);
+        Unit unit = new Unit(name, symbol, a, b, c, d, displaySymbol);
         units.add(unit);
       }
 
@@ -782,9 +534,7 @@ public final class UnitManager
       JsonArray quantityObjects = energisticsStandard.getJsonArray("quantities");
       for (JsonObject quantityObject : quantityObjects.getValuesAs(JsonObject.class)) {
         String name = quantityObject.getString("name");
-        String description = !quantityObject.isNull("description") ? quantityObject.getString("description") : null;
-
-        Quantity quantity = new Quantity(name, description);
+        Quantity quantity = new Quantity(name);
         quantities_.add(quantity);
 
         JsonArray memberUnits = quantityObject.getJsonArray("units");
@@ -796,130 +546,7 @@ public final class UnitManager
     }
     catch (Exception exception) {
       exception.printStackTrace();
-    }
-  }
-
-  /**
-   * Load all quantity and unit information from local XML file.
-   */
-  private void loadFromXml()
-  {
-    String packageName = getClass().getPackage().getName();
-    String packageLocation = packageName.replace('.', '/');
-    String filePath = "/" + packageLocation + "/" + UNITS_FILE;
-
-    InputStream stream = UnitManager.class.getResourceAsStream(filePath);
-
-    assert stream != null : "Missing resource: " + filePath;
-
-    try {
-      Document document = XmlUtil.newDocument(stream);
-
-      Element rootElement = document.getDocumentElement();
-
-      //
-      // UnitOfMeasure elements
-      //
-      Element unitDefinitionsElement = XmlUtil.getChild(rootElement, "UnitsDefinition");
-      List<Element> unitOfMeasureElements = XmlUtil.findChildren(unitDefinitionsElement, "UnitOfMeasure");
-
-      for (Element unitOfMeasureElement : unitOfMeasureElements) {
-        List<Quantity> quantitiesForUnit = new ArrayList<>();
-
-        //
-        // Extract the BaseUnit element with its Description member
-        //
-        Element deprecatedElement = XmlUtil.getChild(unitOfMeasureElement, "Deprecated");
-        Element baseUnitElement = XmlUtil.getChild(unitOfMeasureElement, "BaseUnit");
-        boolean isBaseUnit = baseUnitElement != null && deprecatedElement == null;
-        String quantityDescription = baseUnitElement != null ? XmlUtil.getChildValue(baseUnitElement, "Description", null) : null;
-
-        //
-        // Identify all the quantities this unit appears in
-        //
-        List<Element> quantityTypeElements = XmlUtil.findChildren(unitOfMeasureElement, "QuantityType");
-        for (Element quantityTypeElement : quantityTypeElements) {
-          String quantityName = quantityTypeElement.getTextContent();
-          Quantity quantity = findOrCreateQuantity(quantityName, quantityDescription);
-
-          quantitiesForUnit.add(quantity);
-        }
-
-        String unitName = XmlUtil.getChildValue(unitOfMeasureElement, "Name", null);
-        String unitSymbol = XmlUtil.getChildValue(unitOfMeasureElement, "CatalogSymbol", null);
-
-        Element conversionElement = XmlUtil.getChild(unitOfMeasureElement, "ConversionToBaseUnit");
-
-        double a = 1.0;
-        double b = 0.0;
-        double c = 0.0;
-        double d = 1.0;
-
-        if (conversionElement != null) {
-          String factorText = XmlUtil.getChildValue(conversionElement, "Factor", null);
-
-          Element fractionElement = XmlUtil.getChild(conversionElement, "Fraction");
-          Element formulaElement = XmlUtil.getChild(conversionElement, "Formula");
-
-          if (factorText != null) {
-            try {
-              a = Double.parseDouble(factorText);
-            }
-            catch (NumberFormatException exception) {
-              assert false : "Invalid numeric value: " + factorText;
-            }
-          }
-          else if (fractionElement != null) {
-            String numeratorText = XmlUtil.getChildValue(fractionElement, "Numerator", null);
-            String denominatorText = XmlUtil.getChildValue(fractionElement, "Denominator", null);
-
-            try {
-              double numerator = Double.parseDouble(numeratorText);
-              double denominator = Double.parseDouble(denominatorText);
-
-              a = numerator / denominator;
-            }
-            catch (NumberFormatException exception) {
-              assert false : "Invalid numeric value: " + numeratorText + "/" + denominatorText;
-            }
-          }
-          else if (formulaElement != null) {
-            String aText = XmlUtil.getChildValue(formulaElement, "A", null);
-            String bText = XmlUtil.getChildValue(formulaElement, "B", null);
-            String cText = XmlUtil.getChildValue(formulaElement, "C", null);
-            String dText = XmlUtil.getChildValue(formulaElement, "D", null);
-
-            try {
-              // NOTE: We have a different definition of a, b, c, d than Energistics
-              //       so the switch of order is intentional
-              b = Double.parseDouble(aText);
-              a = Double.parseDouble(bText);
-              d = Double.parseDouble(cText);
-              c = Double.parseDouble(dText);
-            }
-            catch (NumberFormatException exception) {
-              assert false : "Invalid numeric value: " + aText + "," + bText + "," + cText + "," + dText;
-            }
-          }
-        }
-
-        Unit unit = new Unit(unitName, unitSymbol, a, b, c, d);
-
-        for (Quantity quantity : quantitiesForUnit) {
-          quantity.addUnit(unit, isBaseUnit);
-        }
-      }
-    }
-    catch (SAXException | IOException exception) {
-      assert false : "Parse error: " + filePath;
-    }
-    finally {
-      try {
-        stream.close();
-      }
-      catch (IOException exception) {
-        // Ignore
-      }
+      assert false : "This will not happen";
     }
   }
 
