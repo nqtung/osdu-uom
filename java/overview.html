@@ -1,0 +1,425 @@
+<body>
+
+  juom - Java library for handling units of measurement.
+
+  <h1>Overview</h1>
+
+  <p>
+  When dealing with scientific data it is essential to know the units of
+  measurement in order to <em>understand</em> and present the information
+  correctly.
+  Likewise, in order to do <em>computations</em> with scientific data it is essential
+  that software is able to convert data into a common unit framework.
+
+  <p>
+  The GeoSoft juom library is a convenient, extensible front-end to the
+  <a href="http://www.energistics.org/asset-data-management/unit-of-measure-standard">Energistics Unit of Measure</a> database.
+  It contains more than 250 different quantities with more than
+  2500 unit definitions.
+  The API is simple, well documented and easy to use, and the library is trivial
+  to embed in any scientific software system.
+
+  <p>
+  The library is lightweight (&lt; 0.1MB) and self-contained; It embeds the complete
+  OSDU/Energistics unit database and has no external dependencies.
+
+
+  <br>
+  <br>
+  <p>
+  <h1>Programming examples</h1>
+
+  <p>
+  The easiest way to get started with juom is to explore the predefined
+  Energistics quantities and units:
+
+<!--
+import no.geosoft.uom.Quantity;
+import no.geosoft.uom.Unit;
+import no.geosoft.uom.UnitManager;
+
+:
+
+//
+// Get the unit manager singleton
+//
+UnitManager unitManager = UnitManager.getInstance();
+
+//
+// Get all pre-defined quantities and their units
+//
+List<Quantity> quantities = uniteManager.getQuantities();
+for (Quantity : quantities) {
+  System.out.println("Quantity: " + quantity.getName() + " - " + quantity.getDescription();
+  for (Unit unit : quantity.getUnits())
+    System.out.println("  Unit: " + unit.getSymbol() + " (" + unit.getName() + ")";
+}
+
+:
+-->
+<br>
+<blockquote style="border: 1px solid #ccc;">
+<div style='background:#FFFFee; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding: 10px;'><strong><font color='#7f0055'>import</font></strong>&nbsp;no.geosoft.uom.Quantity;
+<br/><strong><font color='#7f0055'>import</font></strong>&nbsp;no.geosoft.uom.Unit;
+<br/><strong><font color='#7f0055'>import</font></strong>&nbsp;no.geosoft.uom.UnitManager;
+<br/>
+<br/>:
+<br/>
+<br/><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Get&nbsp;the&nbsp;unit&nbsp;manager&nbsp;singleton
+</font><br/><font color='#3f7f5f'>//
+</font><br/>UnitManager&nbsp;unitManager&nbsp;=&nbsp;UnitManager.getInstance();
+<br/>
+<br/><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Get&nbsp;all&nbsp;pre-defined&nbsp;quantities&nbsp;and&nbsp;their&nbsp;units
+</font><br/><font color='#3f7f5f'>//
+</font><br/>List&lt;Quantity&gt;&nbsp;quantities&nbsp;=&nbsp;uniteManager.getQuantities();
+<br/><strong><font color='#7f0055'>for</font></strong>&nbsp;(Quantity&nbsp;:&nbsp;quantities)&nbsp;{
+<br/>&nbsp;&nbsp;System.out.println(<font color='#2a00ff'>"Quantity:&nbsp;"</font>&nbsp;+&nbsp;quantity.getName()&nbsp;+&nbsp;<font color='#2a00ff'>"&nbsp;-&nbsp;"</font>&nbsp;+&nbsp;quantity.getDescription();
+<br/>&nbsp;&nbsp;<strong><font color='#7f0055'>for</font></strong>&nbsp;(Unit&nbsp;unit&nbsp;:&nbsp;quantity.getUnits())
+<br/>&nbsp;&nbsp;&nbsp;&nbsp;System.out.println(<font color='#2a00ff'>"  Unit:&nbsp;"</font>&nbsp;+&nbsp;unit.getSymbol()&nbsp;+&nbsp;<font color='#2a00ff'>"&nbsp;("</font>&nbsp;+&nbsp;unit.getName()&nbsp;+&nbsp;<font color='#2a00ff'>")"</font>;
+<br/>}
+<br/>
+<br/>:
+</div>
+</blockquote>
+
+
+  <br>
+  <p>
+  <b>Unit conversion</b>
+
+  <p>
+  Basic unit conversion is done through <tt>UnitManager</tt>
+  using instances of <tt>Unit</tt> or the unit symbols directly:
+
+<!--
+//
+// Convert between known units, using unit symbols directly
+//
+double milesPerHour = 55.0;
+double kilometersPerHour = unitManager.convert("mi/h", "km/h", milesPerHour);
+
+//
+// Conversion using Unit instances
+//
+Unit feet = unitManager.findUnit("ft");
+
+double lengthFt = 8981.0; // Length of the Golden Gate bridge in feet
+
+Quantity quantity = unitManager.findQuantity("length");
+for (Unit unit : quantity.getUnits()) {
+  double length = unitManager.convert(feet, unit, lengthFt);
+  System.out.println("Golden Gate is " + length + " " + unit.getSymbol());
+}
+-->
+<br>
+<blockquote style="border: 1px solid #ccc;">
+<div style='background:#FFFFee; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding: 10px;'><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Convert&nbsp;between&nbsp;known&nbsp;units,&nbsp;using&nbsp;unit&nbsp;symbols&nbsp;directly
+</font><br/><font color='#3f7f5f'>//
+</font><br/><strong><font color='#7f0055'>double</font></strong>&nbsp;milesPerHour&nbsp;=&nbsp;55.0;
+<br/><strong><font color='#7f0055'>double</font></strong>&nbsp;kilometersPerHour&nbsp;=&nbsp;unitManager.convert(<font color='#2a00ff'>"mi/h"</font>,&nbsp;<font color='#2a00ff'>"km/h"</font>,&nbsp;milesPerHour);
+<br/>
+<br/><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Conversion&nbsp;using&nbsp;Unit&nbsp;instances
+</font><br/><font color='#3f7f5f'>//
+</font><br/>Unit&nbsp;feet&nbsp;=&nbsp;unitManager.findUnit(<font color='#2a00ff'>"ft"</font>);
+<br/>
+<br/><strong><font color='#7f0055'>double</font></strong>&nbsp;lengthFt&nbsp;=&nbsp;8981.0;&nbsp;<font color='#3f7f5f'>//&nbsp;Length&nbsp;of&nbsp;the&nbsp;Golden&nbsp;Gate&nbsp;bridge&nbsp;in&nbsp;feet
+</font><br/>
+<br/>Quantity&nbsp;quantity&nbsp;=&nbsp;unitManager.findQuantity(<font color='#2a00ff'>"length"</font>);
+<br/><strong><font color='#7f0055'>for</font></strong>&nbsp;(Unit&nbsp;unit&nbsp;:&nbsp;quantity.getUnits())&nbsp;{
+<br/>&nbsp;&nbsp;<strong><font color='#7f0055'>double</font></strong>&nbsp;length&nbsp;=&nbsp;unitManager.convert(feet,&nbsp;unit,&nbsp;lengthFt);
+<br/>&nbsp;&nbsp;System.out.println(<font color='#2a00ff'>"Golden&nbsp;Gate&nbsp;is&nbsp;"</font>&nbsp;+&nbsp;length&nbsp;+&nbsp;<font color='#2a00ff'>"&nbsp;"</font>&nbsp;+&nbsp;unit.getSymbol());
+<br/>}
+</div>
+</blockquote>
+
+
+  <p>
+  Making a user interface units aware includes associating
+  GUI components with quantities and then provide unit conversions,
+  either per element or as overall preference settings.
+
+  <p>
+  It is essential that the application knows the initial unit of measure
+  of the values involved. A common advice to reduce complexity and risk of errors
+  is to keep the entire data model in <em>base</em> units (typically SI or similar)
+  and convert in GUI only on users request. The associated units will then
+  be <em>implied</em>, effectively making the entire business logic <em>unitless</em>.
+  Conversions to and from base units can be performed directly on the <tt>Unit</tt> instances:
+
+<!--
+//
+// Capture pressure display unit from GUI or prefernces
+//
+Unit diplsayUnit = ...;
+String displaySymbol = unitManager.getDisplaySymbol(diplsayUnit.getSymbol());
+
+//
+// Populate GUI element
+//
+double pressure = ...; // From business model, SI implied
+pressureText.setText(displayUnit.fromBase(pressure) + " [" + displaySymbol + "]");
+
+:
+
+//
+// Capture user input
+//
+double value = pressureText.getValue(); // In user preferred unit
+double pressure = displayUnit.toBase(value); // Converted to business model unit (SI)
+-->
+<br>
+<blockquote style="border: 1px solid #ccc;">
+<div style='background:#FFFFee; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding: 10px;'><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Capture&nbsp;pressure&nbsp;display&nbsp;unit&nbsp;from&nbsp;GUI&nbsp;or&nbsp;prefernces
+</font><br/><font color='#3f7f5f'>//
+</font><br/>Unit&nbsp;diplsayUnit&nbsp;=&nbsp;...;
+<br/>String&nbsp;displaySymbol&nbsp;=&nbsp;unitManager.getDisplaySymbol(diplsayUnit.getSymbol());
+<br/>
+<br/><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Populate&nbsp;GUI&nbsp;element
+</font><br/><font color='#3f7f5f'>//
+</font><br/><strong><font color='#7f0055'>double</font></strong>&nbsp;pressure&nbsp;=&nbsp;...;&nbsp;<font color='#3f7f5f'>//&nbsp;From&nbsp;business&nbsp;model,&nbsp;SI&nbsp;implied
+</font><br/>pressureText.setText(displayUnit.fromBase(pressure)&nbsp;+&nbsp;<font color='#2a00ff'>"&nbsp;["</font>&nbsp;+&nbsp;displaySymbol&nbsp;+&nbsp;<font color='#2a00ff'>"]"</font>);
+<br/>
+<br/>:
+<br/>
+<br/><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Capture&nbsp;user&nbsp;input
+</font><br/><font color='#3f7f5f'>//
+</font><br/><strong><font color='#7f0055'>double</font></strong>&nbsp;value&nbsp;=&nbsp;pressureText.getValue();&nbsp;<font color='#3f7f5f'>//&nbsp;In&nbsp;user&nbsp;preferred&nbsp;unit
+</font><br/><strong><font color='#7f0055'>double</font></strong>&nbsp;pressure&nbsp;=&nbsp;displayUnit.toBase(value);&nbsp;<font color='#3f7f5f'>//&nbsp;Converted&nbsp;to&nbsp;business&nbsp;model&nbsp;unit&nbsp;(SI)</font>
+</div>
+</blockquote>
+
+
+     <p>
+     It may make sense to provide unit conversion even if the quantity of a measure
+     is unknown. In these cases it is possible to obtain the quantity, but it might
+     be more convenient to get all convertible units directly:
+
+<!--
+//
+// Given a unit, find the associated quantity
+//
+String unitSymbol = "degC"; // Degrees Celsius
+Quantity quanitity = unitManager.findQuantity(unitSymbol);
+List<Unit> units = quantity.getUnits(); // All temperature units
+
+:
+
+//
+// Given a unit, find all convertible units
+//
+String unitSymbol = "degC"; // Degrees Celsius
+List<Unit> units = unitManager.findConvertibleUnits(unitSymbol);
+-->
+<br>
+<blockquote style="border: 1px solid #ccc;">
+<div style='background:#FFFFee; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding: 10px;'><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Given&nbsp;a&nbsp;unit,&nbsp;find&nbsp;the&nbsp;associated&nbsp;quantity
+</font><br/><font color='#3f7f5f'>//
+</font><br/>String&nbsp;unitSymbol&nbsp;=&nbsp;<font color='#2a00ff'>"degC"</font>;&nbsp;<font color='#3f7f5f'>//&nbsp;Degrees&nbsp;Celsius
+</font><br/>Quantity&nbsp;quanitity&nbsp;=&nbsp;unitManager.findQuantity(unitSymbol);
+<br/>List&lt;Unit&gt;&nbsp;units&nbsp;=&nbsp;quantity.getUnits();&nbsp;<font color='#3f7f5f'>//&nbsp;All&nbsp;temperature&nbsp;units
+</font><br/>
+<br/>:
+<br/>
+<br/><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Given&nbsp;a&nbsp;unit,&nbsp;find&nbsp;all&nbsp;convertible&nbsp;units
+</font><br/><font color='#3f7f5f'>//
+</font><br/>String&nbsp;unitSymbol&nbsp;=&nbsp;<font color='#2a00ff'>"degC"</font>;&nbsp;<font color='#3f7f5f'>//&nbsp;Degrees&nbsp;Celsius
+</font><br/>List&lt;Unit&gt;&nbsp;units&nbsp;=&nbsp;unitManager.findConvertibleUnits(unitSymbol);
+</div>
+</blockquote>
+
+
+
+  <br>
+  <p>
+  <b>Unit aliases</b>
+
+  <p>
+  There is no universal accepted standard or convention for unit symbols, and
+  to make the module more robust when dealing with units from various sources
+  it is possible to add unit <em>aliases</em>. juom uses the unit symbol defined
+  by Energistics, but have added many aliases for common notations.
+  In addition, client applications can supply their own:
+
+<!--
+unitManager.addUnitAlias("m/s^2", "m/s2");
+unitManager.addUnitAlias("inch", "in");
+unitManager.addUnitAlias("api", "gAPI");
+unitManager.addUnitAlias("deg", "dega");
+:
+-->
+
+<br>
+<blockquote style="border: 1px solid #ccc;">
+<div style='background:#FFFFee; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding: 10px;'>unitManager.addUnitAlias(<font color='#2a00ff'>"m/s^2"</font>,&nbsp;<font color='#2a00ff'>"m/s2"</font>);
+<br/>unitManager.addUnitAlias(<font color='#2a00ff'>"inch"</font>,&nbsp;<font color='#2a00ff'>"in"</font>);
+<br/>unitManager.addUnitAlias(<font color='#2a00ff'>"api"</font>,&nbsp;<font color='#2a00ff'>"gAPI"</font>);
+<br/>unitManager.addUnitAlias(<font color='#2a00ff'>"deg"</font>,&nbsp;<font color='#2a00ff'>"dega"</font>);
+<br/>:
+</div>
+</blockquote>
+
+
+  The typical approach would be to read these from a properties file during startup.
+
+  <br>
+  <br>
+  <p>
+  <b>Display symbols</b>
+
+  <p>
+  Unit symbols should be regarded as <em>IDs</em>, and clients
+  should never expose these directly in a user interface.
+  A GUI friendly <em>display symbol</em> may be obtained through
+  the <tt>UnitManager.getDisplaySymbol()</tt> method.
+
+  <p>
+  Many symbols will obviously equal their associated display symbol,
+  but the table below indicates some of the many that doesn't.
+  The table shows the connection between <em>unit name</em>,
+  <em>unit symbol</em> and <em>display symbol</em>:
+
+<!--
+     <table>
+       <tr><td>Unit name</td>              <td>Unit symbol</td>  <td>Display symbol</td></tr>
+       <tr><td>microseconds per foot</td>  <td>us/ft</td>        <td>&#181;s/ft</td></tr>
+       <tr><td>ohm meter</td>              <td>ohmm</td>         <td>&#8486;&middot;m</tr>
+       <tr><td>cubic centimeters</td>      <td>cm3</td>          <td>cm<sup>3</sup></td></tr>
+       <tr><td>degrees Celcius</td>        <td>degC</td>         <td>&deg;C</td></tr>
+       <tr><td>meter/second squared</td>   <td>m/s2</td>         <td>m/s<sup>2</sup></td></tr>
+       <tr><td>etc.</td>                   <td>&nbsp;</td>       <td>&nbsp;</td></tr>
+     </table>
+-->
+
+<blockquote>
+<style type="text/css">
+.tg  {border-collapse:collapse;border-spacing:0;border-color:#999;}
+.tg td{font-family:Arial, sans-serif;font-size:14px;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#444;background-color:#F7FDFA;}
+.tg th{font-family:Arial, sans-serif;font-size:14px;font-weight:normal;padding:10px 5px;border-style:solid;border-width:1px;overflow:hidden;word-break:normal;border-color:#999;color:#fff;background-color:#26ADE4;}
+.tg .tg-5xqk{font-weight:bold;background-color:#ffffee;color:#000000;text-align:center;vertical-align:top}
+.tg .tg-yw4l{vertical-align:top}
+</style>
+<table class="tg">
+  <tr>
+    <th class="tg-5xqk">&nbsp;Unit name&nbsp;<br></th>
+    <th class="tg-5xqk">&nbsp;Unit symbol&nbsp;<br></th>
+    <th class="tg-5xqk">&nbsp;Display symbol&nbsp;<br></th>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">&nbsp;microseconds per foot</td>
+    <td class="tg-yw4l">&nbsp;us/ft</td>
+    <td class="tg-yw4l">&nbsp;&#181;s/ft</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">&nbsp;ohm meter</td>
+    <td class="tg-yw4l">&nbsp;ohmm</td>
+    <td class="tg-yw4l">&nbsp;&#8486;&middot;m</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">&nbsp;cubic centimeters</td>
+    <td class="tg-yw4l">&nbsp;cm3</td>
+    <td class="tg-yw4l">&nbsp;cm<sup>3</sup></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">&nbsp;degrees Celcius</td>
+    <td class="tg-yw4l">&nbsp;degC</td>
+    <td class="tg-yw4l">&nbsp;&deg;C</td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">&nbsp;meter/second squared</td>
+    <td class="tg-yw4l">&nbsp;m/s2</td>
+    <td class="tg-yw4l">&nbsp;m/s<sup>2</sup></td>
+  </tr>
+  <tr>
+    <td class="tg-yw4l">&nbsp;etc.</td>
+    <td class="tg-yw4l">&nbsp;</td>
+    <td class="tg-yw4l">&nbsp;</td>
+  </tr>
+</table>
+</blockquote>
+
+
+  As for unit aliases, it is possible for clients to supply their own
+  specific display symbols through the <tt>UnitManager.setDisplaySymbol()</tt> method.
+
+
+  <br>
+  <br>
+  <p>
+  <b>Extensibility</b>
+
+  <p>
+  If the predefined set of quantities and units is not sufficient, a client may
+  easily supply their own:
+
+<!--
+//
+// Define "computer storage" quantity with associated units
+//
+Quantity q = new Quantity("computer storage");
+q.addUnit(new Unit("byte", "byte", 1.0, 0.0, 0.0, 1.0), true);
+q.addUnit(new Unit("kilo byte", "kB", 1.0e3, 0.0, 0.0, 1.0), false);
+q.addUnit(new Unit("mega byte", "MB", 1.0e6, 0.0, 0.0, 1.0), false);
+q.addUnit(new Unit("giga byte", "GB", 1.0e9, 0.0, 0.0, 1.0), false);
+:
+unitManager.addQuantity(q);
+
+//
+// Test the new units
+//
+long nBytes = 1230000L;
+double nMegaBytes = unitManager.convert("byte", "MB", nBytes); // 1.23
+-->
+<br>
+<blockquote style="border: 1px solid #ccc;">
+<div style='background:#FFFFee; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding: 10px;'><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Define&nbsp;"computer&nbsp;storage"&nbsp;quantity&nbsp;with&nbsp;associated&nbsp;units
+</font><br/><font color='#3f7f5f'>//
+</font><br/>Quantity&nbsp;q&nbsp;=&nbsp;<strong><font color='#7f0055'>new</font></strong>&nbsp;Quantity(<font color='#2a00ff'>"computer&nbsp;storage"</font>);
+<br/>q.addUnit(<strong><font color='#7f0055'>new</font></strong>&nbsp;Unit(<font color='#2a00ff'>"byte"</font>,&nbsp;<font color='#2a00ff'>"byte"</font>,&nbsp;1.0,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0),&nbsp;<strong><font color='#7f0055'>true</font></strong>);
+<br/>q.addUnit(<strong><font color='#7f0055'>new</font></strong>&nbsp;Unit(<font color='#2a00ff'>"kilo&nbsp;byte"</font>,&nbsp;<font color='#2a00ff'>"kB"</font>,&nbsp;1.0e3,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0),&nbsp;<strong><font color='#7f0055'>false</font></strong>);
+<br/>q.addUnit(<strong><font color='#7f0055'>new</font></strong>&nbsp;Unit(<font color='#2a00ff'>"mega&nbsp;byte"</font>,&nbsp;<font color='#2a00ff'>"MB"</font>,&nbsp;1.0e6,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0),&nbsp;<strong><font color='#7f0055'>false</font></strong>);
+<br/>q.addUnit(<strong><font color='#7f0055'>new</font></strong>&nbsp;Unit(<font color='#2a00ff'>"giga&nbsp;byte"</font>,&nbsp;<font color='#2a00ff'>"GB"</font>,&nbsp;1.0e9,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0),&nbsp;<strong><font color='#7f0055'>false</font></strong>);
+<br/>:
+<br/>unitManager.addQuantity(q);
+<br/>
+<br/><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Test&nbsp;the&nbsp;new&nbsp;units
+</font><br/><font color='#3f7f5f'>//
+</font><br/><strong><font color='#7f0055'>long</font></strong>&nbsp;nBytes&nbsp;=&nbsp;1230000L;
+<br/><strong><font color='#7f0055'>double</font></strong>&nbsp;nMegaBytes&nbsp;=&nbsp;unitManager.convert(<font color='#2a00ff'>"byte"</font>,&nbsp;<font color='#2a00ff'>"MB"</font>,&nbsp;nBytes);&nbsp;<font color='#3f7f5f'>//&nbsp;1.23</font>
+</div>
+</blockquote>
+
+
+  <p>
+  It is also possible to add units to existing quantities:
+
+<!--
+//
+// Add "light year" unit to the existing "length" quantity
+//
+Quantity q = unitManager.findQuantity("length");
+q.addUnit(new Unit("light year", "ly", 9.4607e15, 0.0, 0.0, 1.0), false);
+-->
+
+<br>
+<blockquote style="border: 1px solid #ccc;">
+<div style='background:#FFFFee; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding: 10px;'><font color='#3f7f5f'>//
+</font><br/><font color='#3f7f5f'>//&nbsp;Add&nbsp;"light&nbsp;year"&nbsp;unit&nbsp;to&nbsp;the&nbsp;existing&nbsp;"length"&nbsp;quantity
+</font><br/><font color='#3f7f5f'>//
+</font><br/>Quantity&nbsp;q&nbsp;=&nbsp;unitManager.findQuantity(<font color='#2a00ff'>"length"</font>);
+<br/>q.addUnit(<strong><font color='#7f0055'>new</font></strong>&nbsp;Unit(<font color='#2a00ff'>"light&nbsp;year"</font>,&nbsp;<font color='#2a00ff'>"ly"</font>,&nbsp;9.4607e15,&nbsp;0.0,&nbsp;0.0,&nbsp;1.0),&nbsp;<strong><font color='#7f0055'>false</font></strong>);
+</div>
+</blockquote>
+
+
+</body>
