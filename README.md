@@ -93,7 +93,7 @@ is provided with every unit, such as:
 
 ## Access libraries
 
-The repository contains access libraries for UoM in a different programming environments:
+The repository contains access libraries for UoM for different programming environments:
 
 * [Java](Java/README.md)
 
