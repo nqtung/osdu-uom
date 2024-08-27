@@ -16,11 +16,6 @@ The present solution addresses all these issues.
 It includes a single, streamlined JSON file capturing the essentials of the standard,
 and which can be applied to any programming platform in just a few lines of code.
 
-Reference implementations are available for
-[Java](https://github.com/geosoft-as/juom)
-and (soon)
-[C#/.Net](https://github.com/geosoft-as/nuom).
-
 Best of all, it includes proper _display units_, allowing the use of symbols like **°C**, **µΩ**, or **m³**
 instead of the common but less readable _degC_, _uohm_, or _m3_ etc.
 
@@ -30,7 +25,7 @@ instead of the common but less readable _degC_, _uohm_, or _m3_ etc.
 
 The present repository contains the following:
 
-* `json/uom.json`   A list of all units and quantities of the Energistics/OSDU UoM standard
+* `standard/uom.json`   A list of all units and quantities of the Energistics/OSDU UoM standard
 
 
 
@@ -100,16 +95,15 @@ is provided with every unit, such as:
 
 The repository contains access libraries for UoM in a different programming environments:
 
-### Java
+* [Java](Java/README.md)
+
+* [Python](Python/README.md)
+
+* [C#](Python/README.md)
+
+* [JavaScript](JavaScript/README.md)
 
 
 
-### C#
 
 
-
-### JavaScript
-
-
-
-### Python

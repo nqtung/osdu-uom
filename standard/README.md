@@ -1,6 +1,6 @@
 ## The UoM Standard
 
-This folder contains verious versions of the UoM standard from OSDU/Energistics:
+This folder contains various versions of the UoM standard from OSDU/Energistics:
 
 * `uom.json` - The simplistic version provided by GeoSoft, and the only one needed in order get full UoM support in any programming environment.
 
