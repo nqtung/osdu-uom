@@ -95,13 +95,13 @@ is provided with every unit, such as:
 
 The repository contains access libraries for UoM for different programming environments:
 
-* [Java](Java/README.md)
+* [Java](java/README.md)
 
-* [Python](Python/README.md)
+* [Python](python/README.md)
 
-* [C#](Python/README.md)
+* [C#](csharp/README.md)
 
-* [JavaScript](JavaScript/README.md)
+* [JavaScript](javascript/README.md)
 
 
 
