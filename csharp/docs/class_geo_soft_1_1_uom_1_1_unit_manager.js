@@ -16,6 +16,5 @@ var class_geo_soft_1_1_uom_1_1_unit_manager =
     [ "GetInstance", "class_geo_soft_1_1_uom_1_1_unit_manager.html#a214e6a505943356b5bb05e1ed5afb68a", null ],
     [ "GetQuantities", "class_geo_soft_1_1_uom_1_1_unit_manager.html#a2c91b62f47f04786969f3969252a9c21", null ],
     [ "GetUnits", "class_geo_soft_1_1_uom_1_1_unit_manager.html#ad0f54f2814ef4c4448f57b081d3fb9c9", null ],
-    [ "Main", "class_geo_soft_1_1_uom_1_1_unit_manager.html#a2e67222db1dca5be5f3731ada487dd0f", null ],
     [ "ToString", "class_geo_soft_1_1_uom_1_1_unit_manager.html#aa73e7c4dd1df5fd5fbf81c7764ee1533", null ]
 ];
