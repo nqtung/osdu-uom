@@ -458,28 +458,7 @@ public final class UnitManager
   }
 
   /**
-   * Find the specified unit among the set.
-   *
-   * @param units  Units to search. Non-null.
-   * @param name   Symbol of unit to find. Non-null.
-   * @return       The requested unit, or null if not found.
-   */
-  private static Unit findUnitBySymbol(Set<Unit> units, String symbol)
-  {
-    assert units != null : "units cannot be null";
-    assert symbol != null : "symbol cannot be null";
-
-    for (Unit unit : units) {
-      if (unit.getSymbol().equals(symbol))
-        return unit;
-    }
-
-    // Not found
-    return null;
-  }
-
-  /**
-   * Find the specified unit among the set.
+   * Find the requested unit among the set.
    *
    * @param units  Units to search. Non-null.
    * @param name   Name of unit to find. Non-null.
