@@ -28,7 +28,7 @@ Full Doxygen documentation is available [here](https://htmlpreview.github.io/?ht
 
 ## Examples
 
-The easiest way to get started with juom is to explore the predefined
+The easiest way to get started with geoSoft.Uom is to explore the predefined
 OSDU/Energistics quantities and units:
 
 ```C#
@@ -142,7 +142,7 @@ List<Unit> units = unitManager.FindConvertibleUnits(unitSymbol);
 
 There is no universal accepted standard or convention for unit symbols, and
 to make the module more robust when dealing with units from various sources
-it is possible to add unit _aliases_. juom uses the unit symbol defined
+it is possible to add unit _aliases_. GeoSoft.Uom uses the unit symbol defined
 by OSDU/Energistics, but have added many aliases for common notations.
 In addition, client applications can supply their own:
 
