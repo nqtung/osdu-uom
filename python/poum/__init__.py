@@ -11,6 +11,7 @@ class Unit:
     b_: Decimal
     c_: Decimal
     d_: Decimal
+    display_symbol_: str
 
     def __init__(self, name: str, symbol: str, a: Decimal, b: Decimal, c: Decimal, d: Decimal, display_symbol: str):
         self.name_ = name
