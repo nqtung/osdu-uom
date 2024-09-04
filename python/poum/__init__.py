@@ -1,7 +1,7 @@
 import json
 from decimal import Decimal
 from threading import Lock
-from typing import Set, Optional, List
+from typing import Optional, List, Sequence
 
 
 class Unit:
@@ -12,13 +12,14 @@ class Unit:
     c_: Decimal
     d_: Decimal
 
-    def __init__(self, name: str, symbol: str, a: Decimal, b: Decimal, c: Decimal, d: Decimal):
+    def __init__(self, name: str, symbol: str, a: Decimal, b: Decimal, c: Decimal, d: Decimal, display_symbol: str):
         self.name_ = name
         self.symbol_ = symbol
         self.a_ = a
         self.b_ = b
         self.c_ = c
         self.d_ = d
+        self.display_symbol_ = display_symbol
 
     @property
     def name(self) -> str:
@@ -44,6 +45,10 @@ class Unit:
     def get_d(self) -> Decimal:
         return self.d_
 
+    @property
+    def display_symbol(self) -> str:
+        return self.display_symbol_
+
     def set_a(self, a: Decimal):
         self.a_ = a
 
@@ -55,6 +60,9 @@ class Unit:
 
     def set_d(self, d: Decimal):
         self.d_ = d
+
+    def set_display_symbol(self, display_symbol: str):
+        self.display_symbol_ = display_symbol
 
     def to_base(self, value: Decimal) -> Decimal:
         return ((self.a_ * value) + self.b_) / ((self.c_ * value) + self.d_)
@@ -85,21 +93,15 @@ class Unit:
 
 class Quantity:
     name_: str
-    description_: str
     units_: list[Unit]
 
-    def __init__(self, name: str, description: str, units: list = None):
+    def __init__(self, name: str, units: list = None):
         self.name_ = name
-        self.description_ = description
         self.units_ = units or []
 
     @property
     def name(self) -> str:
         return self.name_
-
-    @property
-    def description(self) -> str:
-        return self.description_
 
     @property
     def units(self) -> list:
@@ -116,24 +118,23 @@ class Quantity:
         return self.units_[0]
 
     def __str__(self):
-        return f'{self.name_} ({self.description_})'
+        def get_unit_str():
+            return '\n'.join([f"{unit.name} ({unit.display_symbol})" for unit in self.units_])
+        return f'Quantity Name: {self.name_} \nUnits: \n{get_unit_str()}'
 
 
 class UnitManager:
-    UNITS_FILE = "witsmlUnitDict-2.2.xml"
+    UNITS_FILE = "poum/uom.json"
     UNIT_ALIASES_FILE = "poum/unit_aliases.txt"
-    DISPLAY_SYMBOLS_FILE = "poum/display_symbols.txt"
 
     _instance = None
     _lock = Lock()
 
     def __init__(self):
         self.unit_aliases_ = {}
-        self.display_symbols_ = {}
         self.quantities_ = set()
         self._load_from_json()
         self._load_unit_aliases()
-        self._load_display_symbols()
 
     @classmethod
     def get_instance(cls):
@@ -148,13 +149,6 @@ class UnitManager:
         if unit_symbol is None:
             raise ValueError("unitSymbol cannot be null")
         self.unit_aliases_[unit_symbol_alias.lower()] = unit_symbol
-
-    def set_display_symbol(self, unit_symbol: str, display_symbol: str):
-        if unit_symbol is None:
-            raise ValueError("unitSymbol cannot be null")
-        if display_symbol is None:
-            raise ValueError("displaySymbol cannot be null")
-        self.display_symbols_[unit_symbol] = display_symbol
 
     def get_quantities(self):
         return self.quantities_
@@ -279,53 +273,15 @@ class UnitManager:
         to_unit = self.find_unit(to_unit_symbol)
         return self.convert(from_unit, to_unit, value) if from_unit and to_unit else value
 
-    def get_display_symbol(self, unit_symbol: str) -> str:
-        if unit_symbol is None:
-            return ""
+    @staticmethod
+    def get_display_symbol_by_unit(unit: Unit) -> str:
+        return unit.display_symbol if unit else ""
 
-        if unit_symbol in self.display_symbols_:
-            return self.display_symbols_[unit_symbol]
-
-        if unit_symbol.lower() == "unitless":
-            return ""
-
-        unit_symbol = unit_symbol.replace("degc", "\u00b0C").replace("degf", "\u00b0F").replace("degr",
-                                                                                                "\u00b0R").replace(
-            "dega", "\u00b0").replace("ohm", "\u2126")
-
-        n = len(unit_symbol)
-        s = []
-
-        prev = ' '
-        _next = unit_symbol[0] if n > 0 else ' '
-
-        for i in range(n):
-            c = _next
-            _next = unit_symbol[i + 1] if i < n - 1 else ' '
-
-            if c == '2':
-                s.append(c if _next.isdigit() or prev.isdigit() else '\u00b2')
-            elif c == '3':
-                s.append(c if _next.isdigit() or prev.isdigit() else '\u00b3')
-            elif c == 'u':
-                s.append('\u00b5' if i == 0 or prev == '/' else c)
-            elif c == '.':
-                s.append(c if prev.isdigit() and _next.isdigit() else '\u00b7')
-            else:
-                s.append(c)
-
-            prev = c
-
-        return ''.join(s)
-
-    def get_display_symbol_by_unit(self, unit: 'Unit') -> str:
-        return self.get_display_symbol(unit.symbol) if unit else ""
-
-    def find_or_create_quantity(self, quantity_name: str, description: str) -> 'Quantity':
+    def find_or_create_quantity(self, quantity_name: str) -> Quantity:
         assert quantity_name is not None, "quantityName cannot be null"
         quantity = self.find_quantity(quantity_name)
         if quantity is None:
-            quantity = Quantity(quantity_name, description)
+            quantity = Quantity(quantity_name)
             self.quantities_.add(quantity)
         return quantity
 
@@ -340,16 +296,8 @@ class UnitManager:
         except IOError:
             pass
 
-    def _load_display_symbols(self):
-        try:
-            with open(self.DISPLAY_SYMBOLS_FILE, 'r') as stream:
-                for line in stream:
-                    key, value = line.strip().split('=')
-                    self.display_symbols_[key.strip()] = value.strip()
-        except IOError:
-            pass
-
-    def _find_unit_by_name(self, units: Set['Unit'], name: str) -> Optional['Unit']:
+    @staticmethod
+    def _find_unit_by_name(units: Sequence[Unit], name: str) -> Optional[Unit]:
         for unit in units:
             if unit.name == name:
                 return unit
@@ -358,7 +306,7 @@ class UnitManager:
     def _load_from_json(self):
         units = []
         try:
-            with open("poum/uom.json", 'r') as stream:
+            with open(self.UNITS_FILE, 'r') as stream:
                 energistics_standard = json.load(stream)
 
                 unit_objects = energistics_standard.get("units", [])
@@ -369,7 +317,8 @@ class UnitManager:
                     b = unit_object["b"]
                     c = unit_object["c"]
                     d = unit_object["d"]
-                    unit = Unit(name, symbol, a, b, c, d)
+                    display_symbol = unit_object.get("display_symbol", symbol)
+                    unit = Unit(name, symbol, a, b, c, d, display_symbol)
                     units.append(unit)
 
                 quantity_objects = energistics_standard.get("quantities", [])

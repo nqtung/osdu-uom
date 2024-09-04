@@ -1,9 +1,7 @@
-
 {
     "quantities": [
         {
             "name": "volume flow rate per volume flow rate",
-            "description": null,
             "units": [
                 "(cubic metre per second) per (cubic metre per second)",
                 "percent",
@@ -15,7 +13,6 @@
         },
         {
             "name": "dimensionless",
-            "description": "A dimensionless quantity is the ratio of two alike dimensional quantities. This class must not be used when a suitable ratio variation exists - such as \"area per area\", \"volume per volume\", \" mass per mass\", etc. That is, the more specialized class must be used when it is available because it provides additional semantic information.",
             "units": [
                 "euclid",
                 "percent",
@@ -37,7 +34,6 @@
         },
         {
             "name": "force per force",
-            "description": null,
             "units": [
                 "newton per newton",
                 "percent",
@@ -48,7 +44,6 @@
         },
         {
             "name": "power per power",
-            "description": null,
             "units": [
                 "watt per watt",
                 "percent",
@@ -59,7 +54,6 @@
         },
         {
             "name": "digital storage",
-            "description": null,
             "units": [
                 "bit",
                 "kibibyte",
@@ -69,7 +63,6 @@
         },
         {
             "name": "mass per mass",
-            "description": null,
             "units": [
                 "kilogram per kilogram",
                 "percent",
@@ -92,7 +85,6 @@
         },
         {
             "name": "length per length",
-            "description": null,
             "units": [
                 "metre per metre",
                 "percent",
@@ -111,7 +103,6 @@
         },
         {
             "name": "area per area",
-            "description": null,
             "units": [
                 "square metre per square metre",
                 "percent",
@@ -125,7 +116,6 @@
         },
         {
             "name": "volume per volume",
-            "description": null,
             "units": [
                 "cubic metre per cubic metre",
                 "percent",
@@ -178,7 +168,6 @@
         },
         {
             "name": "amount of substance per amount of substance",
-            "description": null,
             "units": [
                 "mole per mole",
                 "percent",
@@ -191,7 +180,6 @@
         },
         {
             "name": "time per time",
-            "description": null,
             "units": [
                 "second per second",
                 "percent",
@@ -201,7 +189,6 @@
         },
         {
             "name": "linear thermal expansion",
-            "description": null,
             "units": [
                 "metre per metre delta kelvin",
                 "per delta kelvin",
@@ -211,7 +198,6 @@
         },
         {
             "name": "volumetric thermal expansion",
-            "description": null,
             "units": [
                 "cubic metre per cubic metre delta kelvin",
                 "per delta Celsius",
@@ -226,7 +212,6 @@
         },
         {
             "name": "reciprocal length",
-            "description": null,
             "units": [
                 "per metre",
                 "per angstrom",
@@ -242,7 +227,6 @@
         },
         {
             "name": "area per volume",
-            "description": null,
             "units": [
                 "square metre per cubic metre",
                 "per metre",
@@ -254,7 +238,6 @@
         },
         {
             "name": "reciprocal area",
-            "description": null,
             "units": [
                 "per square metre",
                 "per square foot",
@@ -264,7 +247,6 @@
         },
         {
             "name": "length per volume",
-            "description": null,
             "units": [
                 "metre per cubic metre",
                 "foot per barrel",
@@ -278,7 +260,6 @@
         },
         {
             "name": "reciprocal volume",
-            "description": null,
             "units": [
                 "per cubic metre",
                 "per litre",
@@ -290,7 +271,6 @@
         },
         {
             "name": "reciprocal mass",
-            "description": null,
             "units": [
                 "per kilogram",
                 "per gram",
@@ -299,7 +279,6 @@
         },
         {
             "name": "reciprocal (mass time)",
-            "description": null,
             "units": [
                 "becquerel per kilogram",
                 "per (kilogram per second)",
@@ -308,7 +287,6 @@
         },
         {
             "name": "reciprocal time",
-            "description": null,
             "units": [
                 "per second",
                 "per julian-year",
@@ -322,14 +300,12 @@
         },
         {
             "name": "signaling event per time",
-            "description": null,
             "units": [
                 "baud"
             ]
         },
         {
             "name": "activity [of radioactivity]",
-            "description": "A measure of the radiation being emitted.",
             "units": [
                 "becquerel",
                 "curie",
@@ -344,7 +320,6 @@
         },
         {
             "name": "frequency",
-            "description": null,
             "units": [
                 "hertz",
                 "exahertz",
@@ -363,7 +338,6 @@
         },
         {
             "name": "data transfer speed",
-            "description": "Used primarily for computer transmission rates.",
             "units": [
                 "bit per second",
                 "byte per second"
@@ -371,7 +345,6 @@
         },
         {
             "name": "(volume per time) per volume",
-            "description": null,
             "units": [
                 "cubic metre per time cubic metre",
                 "barrel per day acre foot"
@@ -379,7 +352,6 @@
         },
         {
             "name": "plane angle",
-            "description": null,
             "units": [
                 "radian",
                 "angular millisecond",
@@ -399,7 +371,6 @@
         },
         {
             "name": "angle per length",
-            "description": null,
             "units": [
                 "radian per metre",
                 "angular degree per hundred foot",
@@ -414,7 +385,6 @@
         },
         {
             "name": "angle per volume",
-            "description": null,
             "units": [
                 "radian per cubic metre",
                 "radian per cubic foot"
@@ -422,7 +392,6 @@
         },
         {
             "name": "angular velocity",
-            "description": "The angular velocity. The rate of change of an angle.",
             "units": [
                 "radian per second",
                 "angular degree per hour",
@@ -434,7 +403,6 @@
         },
         {
             "name": "angular acceleration",
-            "description": null,
             "units": [
                 "radian per second squared",
                 "(revolution per minute) per second"
@@ -442,7 +410,6 @@
         },
         {
             "name": "temperature interval",
-            "description": "Delta temperature refers to temperature differences. For non-zero offset temperature scales, Fahrenheit and Celsius, the conversion formulas are different than for absolute temperatures.",
             "units": [
                 "delta kelvin",
                 "delta Celsius",
@@ -452,7 +419,6 @@
         },
         {
             "name": "temperature interval per length",
-            "description": null,
             "units": [
                 "delta kelvin per metre",
                 "delta Fahrenheit per hundred foot",
@@ -467,7 +433,6 @@
         },
         {
             "name": "temperature interval per time",
-            "description": null,
             "units": [
                 "delta kelvin per second",
                 "delta Celsius per hour",
@@ -480,7 +445,6 @@
         },
         {
             "name": "temperature interval per pressure",
-            "description": null,
             "units": [
                 "delta kelvin per Pascal",
                 "delta Celsius per kilopascal",
@@ -489,14 +453,12 @@
         },
         {
             "name": "thermal resistance",
-            "description": null,
             "units": [
                 "delta kelvin per watt"
             ]
         },
         {
             "name": "thermal insulance",
-            "description": null,
             "units": [
                 "delta kelvin square metre per watt",
                 "delta Celsius square metre hour per thousand calory",
@@ -506,7 +468,6 @@
         },
         {
             "name": "electric current",
-            "description": null,
             "units": [
                 "ampere",
                 "exaampere",
@@ -525,7 +486,6 @@
         },
         {
             "name": "magnetic field strength",
-            "description": null,
             "units": [
                 "ampere per metre",
                 "ampere per millimetre",
@@ -534,7 +494,6 @@
         },
         {
             "name": "electric current density",
-            "description": null,
             "units": [
                 "ampere per square metre",
                 "ampere per square centimetre",
@@ -548,14 +507,12 @@
         },
         {
             "name": "reluctance",
-            "description": null,
             "units": [
                 "per henry"
             ]
         },
         {
             "name": "electric conductance",
-            "description": null,
             "units": [
                 "siemens",
                 "exasiemens",
@@ -574,7 +531,6 @@
         },
         {
             "name": "electric conductivity",
-            "description": null,
             "units": [
                 "siemens per metre",
                 "kilosiemens per metre",
@@ -584,7 +540,6 @@
         },
         {
             "name": "capacitance",
-            "description": null,
             "units": [
                 "farad",
                 "exafarad",
@@ -603,7 +558,6 @@
         },
         {
             "name": "permittivity",
-            "description": null,
             "units": [
                 "farad per metre",
                 "microfarad per metre"
@@ -611,21 +565,18 @@
         },
         {
             "name": "electromagnetic moment",
-            "description": null,
             "units": [
                 "ampere square metre"
             ]
         },
         {
             "name": "dipole moment",
-            "description": null,
             "units": [
                 "coulomb metre"
             ]
         },
         {
             "name": "electric charge",
-            "description": null,
             "units": [
                 "coulomb",
                 "ampere hour",
@@ -646,7 +597,6 @@
         },
         {
             "name": "electric charge per area",
-            "description": null,
             "units": [
                 "coulomb per square metre",
                 "coulomb per square centimetre",
@@ -656,7 +606,6 @@
         },
         {
             "name": "electric charge per volume",
-            "description": null,
             "units": [
                 "coulomb per cubic metre",
                 "ampere second per cubic metre",
@@ -666,7 +615,6 @@
         },
         {
             "name": "electric charge per mass",
-            "description": null,
             "units": [
                 "coulomb per kilogram",
                 "ampere second per kilogram",
@@ -675,7 +623,6 @@
         },
         {
             "name": "reciprocal electric potential difference",
-            "description": null,
             "units": [
                 "per volt",
                 "per microvolt"
@@ -683,7 +630,6 @@
         },
         {
             "name": "luminous intensity",
-            "description": null,
             "units": [
                 "candela",
                 "kilocandela"
@@ -691,21 +637,18 @@
         },
         {
             "name": "luminance",
-            "description": null,
             "units": [
                 "candela per square metre"
             ]
         },
         {
             "name": "luminous flux",
-            "description": null,
             "units": [
                 "lumen"
             ]
         },
         {
             "name": "illuminance",
-            "description": null,
             "units": [
                 "lux",
                 "footcandle",
@@ -715,14 +658,12 @@
         },
         {
             "name": "quantity of light",
-            "description": null,
             "units": [
                 "lumen second"
             ]
         },
         {
             "name": "light exposure",
-            "description": null,
             "units": [
                 "lux second",
                 "footcandle second"
@@ -730,14 +671,12 @@
         },
         {
             "name": "luminous efficacy",
-            "description": null,
             "units": [
                 "lumen per watt"
             ]
         },
         {
             "name": "thermodynamic temperature",
-            "description": null,
             "units": [
                 "degree kelvin",
                 "degree Celsius",
@@ -747,7 +686,6 @@
         },
         {
             "name": "length",
-            "description": null,
             "units": [
                 "metre",
                 "tenth of foot",
@@ -836,7 +774,6 @@
         },
         {
             "name": "volume per area",
-            "description": null,
             "units": [
                 "cubic metre per square metre",
                 "million barrel per acre",
@@ -846,7 +783,6 @@
         },
         {
             "name": "length per angle",
-            "description": null,
             "units": [
                 "metre per radian",
                 "hundred foot per angular degree",
@@ -861,7 +797,6 @@
         },
         {
             "name": "length per temperature",
-            "description": null,
             "units": [
                 "metre per delta kelvin",
                 "foot per delta Fahrenheit"
@@ -869,7 +804,6 @@
         },
         {
             "name": "length per mass",
-            "description": null,
             "units": [
                 "metre per kilogram",
                 "foot per pound-mass"
@@ -877,7 +811,6 @@
         },
         {
             "name": "length per time",
-            "description": null,
             "units": [
                 "metre per second",
                 "thousand foot per hour",
@@ -911,7 +844,6 @@
         },
         {
             "name": "(volume per time) per area",
-            "description": null,
             "units": [
                 "cubic metre per second square metre",
                 "cubic foot per minute square foot",
@@ -926,7 +858,6 @@
         },
         {
             "name": "linear acceleration",
-            "description": null,
             "units": [
                 "metre per second squared",
                 "galileo",
@@ -940,7 +871,6 @@
         },
         {
             "name": "permeability rock",
-            "description": null,
             "units": [
                 "teradarcy-API",
                 "darcy",
@@ -950,7 +880,6 @@
         },
         {
             "name": "area",
-            "description": null,
             "units": [
                 "square metre",
                 "acre",
@@ -970,7 +899,6 @@
         },
         {
             "name": "volume per length",
-            "description": null,
             "units": [
                 "cubic metre per metre",
                 "litre per hundred kilometre",
@@ -990,7 +918,6 @@
         },
         {
             "name": "specific heat capacity",
-            "description": null,
             "units": [
                 "joule per kilogram delta kelvin",
                 "BTU per pound-mass delta Fahrenheit",
@@ -1004,7 +931,6 @@
         },
         {
             "name": "area per mass",
-            "description": null,
             "units": [
                 "square metre per kilogram",
                 "square centimetre per gram",
@@ -1014,14 +940,12 @@
         },
         {
             "name": "area per amount of substance",
-            "description": null,
             "units": [
                 "square metre per gram-mole"
             ]
         },
         {
             "name": "kinematic viscosity",
-            "description": null,
             "units": [
                 "pascal second square metre per kilogram",
                 "stokes",
@@ -1037,7 +961,6 @@
         },
         {
             "name": "thermal diffusivity",
-            "description": null,
             "units": [
                 "square centimetre per second",
                 "square foot per hour",
@@ -1050,7 +973,6 @@
         },
         {
             "name": "area per time",
-            "description": null,
             "units": [
                 "square metre per second",
                 "square centimetre per second",
@@ -1064,7 +986,6 @@
         },
         {
             "name": "(volume per time) per length",
-            "description": null,
             "units": [
                 "cubic metre per second metre",
                 "(thousand cubic foot per day) per foot",
@@ -1085,14 +1006,12 @@
         },
         {
             "name": "diffusion coefficient",
-            "description": null,
             "units": [
                 "square metre per second"
             ]
         },
         {
             "name": "absorbed dose",
-            "description": "The amount of energy absorbed per mass.",
             "units": [
                 "gray",
                 "exagray",
@@ -1124,7 +1043,6 @@
         },
         {
             "name": "energy per mass",
-            "description": null,
             "units": [
                 "joule per kilogram",
                 "BTU per pound-mass",
@@ -1146,7 +1064,6 @@
         },
         {
             "name": "dose equivalent",
-            "description": null,
             "units": [
                 "sievert",
                 "millisievert",
@@ -1156,7 +1073,6 @@
         },
         {
             "name": "(energy per mass) per time",
-            "description": null,
             "units": [
                 "sievert per second",
                 "sievert per hour",
@@ -1167,7 +1083,6 @@
         },
         {
             "name": "moment of inertia",
-            "description": null,
             "units": [
                 "kilogram square metre",
                 "pound-mass square foot"
@@ -1175,7 +1090,6 @@
         },
         {
             "name": "molar heat capacity",
-            "description": null,
             "units": [
                 "joule per gram-mole delta kelvin",
                 "BTU per pound-mass-mole delta Fahrenheit",
@@ -1185,21 +1099,18 @@
         },
         {
             "name": "heat capacity",
-            "description": null,
             "units": [
                 "joule per delta kelvin"
             ]
         },
         {
             "name": "thermal conductance",
-            "description": null,
             "units": [
                 "watt per delta kelvin"
             ]
         },
         {
             "name": "inductance",
-            "description": null,
             "units": [
                 "henry",
                 "exahenry",
@@ -1217,7 +1128,6 @@
         },
         {
             "name": "electric resistance",
-            "description": null,
             "units": [
                 "ohm",
                 "exaohm",
@@ -1236,7 +1146,6 @@
         },
         {
             "name": "magnetic flux",
-            "description": null,
             "units": [
                 "weber",
                 "exaweber",
@@ -1255,7 +1164,6 @@
         },
         {
             "name": "electric potential difference",
-            "description": null,
             "units": [
                 "volt",
                 "gigavolt",
@@ -1273,7 +1181,6 @@
         },
         {
             "name": "molar energy",
-            "description": null,
             "units": [
                 "joule per gram-mole",
                 "BTU per pound-mass-mole",
@@ -1284,14 +1191,12 @@
         },
         {
             "name": "radiant intensity",
-            "description": null,
             "units": [
                 "watt per steradian"
             ]
         },
         {
             "name": "energy",
-            "description": null,
             "units": [
                 "joule",
                 "million BTU",
@@ -1353,7 +1258,6 @@
         },
         {
             "name": "moment of force",
-            "description": null,
             "units": [
                 "newton metre",
                 "thousand foot pound-force",
@@ -1372,7 +1276,6 @@
         },
         {
             "name": "heat flow rate",
-            "description": null,
             "units": [
                 "joule per second",
                 "million BTU per hour",
@@ -1401,7 +1304,6 @@
         },
         {
             "name": "power",
-            "description": null,
             "units": [
                 "watt",
                 "exawatt",
@@ -1425,7 +1327,6 @@
         },
         {
             "name": "length per pressure",
-            "description": null,
             "units": [
                 "metre per Pascal",
                 "foot per psi",
@@ -1434,7 +1335,6 @@
         },
         {
             "name": "permeability length",
-            "description": null,
             "units": [
                 "teradarcy-API metre",
                 "darcy foot",
@@ -1445,7 +1345,6 @@
         },
         {
             "name": "volume",
-            "description": null,
             "units": [
                 "cubic metre",
                 "thousand barrel",
@@ -1487,7 +1386,6 @@
         },
         {
             "name": "volume per rotation",
-            "description": null,
             "units": [
                 "cubic metre per radian",
                 "cubic foot per radian",
@@ -1496,7 +1394,6 @@
         },
         {
             "name": "volume per mass",
-            "description": null,
             "units": [
                 "cubic metre per kilogram",
                 "litre per hundred kilogram",
@@ -1524,7 +1421,6 @@
         },
         {
             "name": "molar volume",
-            "description": null,
             "units": [
                 "cubic metre per gram-mole",
                 "litre per kilogram-mole",
@@ -1536,7 +1432,6 @@
         },
         {
             "name": "volume per time",
-            "description": null,
             "units": [
                 "cubic metre per second",
                 "cubic centimetre per thirty minute",
@@ -1574,7 +1469,6 @@
         },
         {
             "name": "(volume per time) per time",
-            "description": null,
             "units": [
                 "cubic metre per second squared",
                 "(litre per second) per second",
@@ -1594,7 +1488,6 @@
         },
         {
             "name": "electrical resistivity",
-            "description": "The resistance , times the cross-sectional area , divided by the length.",
             "units": [
                 "ohm metre",
                 "kiloohm metre",
@@ -1606,14 +1499,12 @@
         },
         {
             "name": "magnetic dipole moment",
-            "description": null,
             "units": [
                 "weber metre"
             ]
         },
         {
             "name": "force area",
-            "description": null,
             "units": [
                 "newton square metre",
                 "dyne square centimetre",
@@ -1628,7 +1519,6 @@
         },
         {
             "name": "mobility",
-            "description": null,
             "units": [
                 "teradarcy-API per pascal second",
                 "darcy per pascal second",
@@ -1641,7 +1531,6 @@
         },
         {
             "name": "(volume per time) per (pressure length)",
-            "description": null,
             "units": [
                 "square metre per pascal second",
                 "barrel per day foot psi",
@@ -1651,7 +1540,6 @@
         },
         {
             "name": "second moment of area",
-            "description": null,
             "units": [
                 "metre to the fourth power",
                 "centimetre to the fourth power",
@@ -1660,7 +1548,6 @@
         },
         {
             "name": "(volume per time) length",
-            "description": null,
             "units": [
                 "metre to the fourth power per second",
                 "thousand barrel foot per day",
@@ -1669,7 +1556,6 @@
         },
         {
             "name": "(volume per time) per pressure",
-            "description": null,
             "units": [
                 "cubic metre per pascal second",
                 "(thousand cubic foot per day) per psi",
@@ -1686,7 +1572,6 @@
         },
         {
             "name": "volume per pressure",
-            "description": null,
             "units": [
                 "cubic metre per Pascal",
                 "barrel per psi",
@@ -1695,7 +1580,6 @@
         },
         {
             "name": "mass length",
-            "description": null,
             "units": [
                 "kilogram metre",
                 "pound-mass foot"
@@ -1703,7 +1587,6 @@
         },
         {
             "name": "energy length per time area temperature",
-            "description": null,
             "units": [
                 "joule metre per second square metre delta kelvin",
                 "BTU per (hour square foot delta Fahrenheit per inch)",
@@ -1713,7 +1596,6 @@
         },
         {
             "name": "thermal conductivity",
-            "description": null,
             "units": [
                 "watt per metre delta kelvin",
                 "BTU per hour foot delta Fahrenheit",
@@ -1724,7 +1606,6 @@
         },
         {
             "name": "magnetic permeability",
-            "description": null,
             "units": [
                 "henry per metre",
                 "microhenry per metre"
@@ -1732,7 +1613,6 @@
         },
         {
             "name": "electric resistance per length",
-            "description": null,
             "units": [
                 "ohm per metre",
                 "microhm per foot",
@@ -1741,7 +1621,6 @@
         },
         {
             "name": "magnetic vector potential",
-            "description": null,
             "units": [
                 "weber per metre",
                 "weber per millimetre"
@@ -1749,7 +1628,6 @@
         },
         {
             "name": "electric field strength",
-            "description": null,
             "units": [
                 "volt per metre",
                 "millivolt per foot",
@@ -1760,7 +1638,6 @@
         },
         {
             "name": "momentum",
-            "description": null,
             "units": [
                 "kilogram metre per second",
                 "foot pound-mass per second"
@@ -1768,7 +1645,6 @@
         },
         {
             "name": "energy length per area",
-            "description": null,
             "units": [
                 "joule metre per square metre",
                 "thousand calorie metre per square centimetre"
@@ -1776,7 +1652,6 @@
         },
         {
             "name": "energy per length",
-            "description": null,
             "units": [
                 "joule per metre",
                 "megajoule per metre"
@@ -1784,7 +1659,6 @@
         },
         {
             "name": "force",
-            "description": null,
             "units": [
                 "newton",
                 "ten kilonewton",
@@ -1817,7 +1691,6 @@
         },
         {
             "name": "force length per length",
-            "description": null,
             "units": [
                 "newton metre per metre",
                 "thousand gram-force metre per metre",
@@ -1828,7 +1701,6 @@
         },
         {
             "name": "reciprocal pressure",
-            "description": null,
             "units": [
                 "per pascal",
                 "per bar",
@@ -1840,7 +1712,6 @@
         },
         {
             "name": "isothermal compressibility",
-            "description": null,
             "units": [
                 "cubic metre per joule",
                 "cubic decimetre per kilowatt hour",
@@ -1852,7 +1723,6 @@
         },
         {
             "name": "mass",
-            "description": null,
             "units": [
                 "kilogram",
                 "exagram",
@@ -1884,7 +1754,6 @@
         },
         {
             "name": "volumetric heat transfer coefficient",
-            "description": null,
             "units": [
                 "watt per cubic metre delta kelvin",
                 "BTU per hour cubic foot delta Fahrenheit",
@@ -1894,7 +1763,6 @@
         },
         {
             "name": "heat transfer coefficient",
-            "description": null,
             "units": [
                 "watt per square metre delta kelvin",
                 "BTU per hour square foot delta Fahrenheit",
@@ -1911,7 +1779,6 @@
         },
         {
             "name": "magnetic flux density per length",
-            "description": null,
             "units": [
                 "tesla per metre",
                 "gauss per centimetre",
@@ -1920,7 +1787,6 @@
         },
         {
             "name": "magnetic flux density",
-            "description": null,
             "units": [
                 "tesla",
                 "exatesla",
@@ -1951,7 +1817,6 @@
         },
         {
             "name": "mass per length",
-            "description": null,
             "units": [
                 "kilogram per metre",
                 "megagram per inch",
@@ -1962,7 +1827,6 @@
         },
         {
             "name": "mass per area",
-            "description": null,
             "units": [
                 "kilogram per square metre",
                 "pound-mass per hundred square foot",
@@ -1973,7 +1837,6 @@
         },
         {
             "name": "(mass per time) per area",
-            "description": null,
             "units": [
                 "kilogram per square metre second",
                 "megapascal second per metre",
@@ -1986,7 +1849,6 @@
         },
         {
             "name": "force per volume",
-            "description": null,
             "units": [
                 "newton per cubic metre",
                 "psi per thousand foot",
@@ -2009,7 +1871,6 @@
         },
         {
             "name": "mass per volume",
-            "description": null,
             "units": [
                 "kilogram per cubic metre",
                 "pound-mass per thousand barrel",
@@ -2044,7 +1905,6 @@
         },
         {
             "name": "(mass per volume) per length",
-            "description": null,
             "units": [
                 "kilogram per metre to the fourth power",
                 "pascal second squared per cubic metre",
@@ -2057,7 +1917,6 @@
         },
         {
             "name": "pressure time per volume",
-            "description": null,
             "units": [
                 "pascal second per cubic metre",
                 "psi day per barrel"
@@ -2065,7 +1924,6 @@
         },
         {
             "name": "pressure per volume",
-            "description": null,
             "units": [
                 "pascal per cubic metre",
                 "psi squared day per centipoise cubic foot"
@@ -2073,7 +1931,6 @@
         },
         {
             "name": "dynamic viscosity",
-            "description": null,
             "units": [
                 "pascal second",
                 "exapoise",
@@ -2100,7 +1957,6 @@
         },
         {
             "name": "(mass per time) per length",
-            "description": null,
             "units": [
                 "kilogram per metre second",
                 "pascal second",
@@ -2110,7 +1966,6 @@
         },
         {
             "name": "energy per volume",
-            "description": null,
             "units": [
                 "joule per cubic metre",
                 "BTU per barrel",
@@ -2139,7 +1994,6 @@
         },
         {
             "name": "pressure",
-            "description": null,
             "units": [
                 "pascal",
                 "pound-force per hundred square foot",
@@ -2188,7 +2042,6 @@
         },
         {
             "name": "pressure per time",
-            "description": null,
             "units": [
                 "pascal per second",
                 "megapascal per hour",
@@ -2203,7 +2056,6 @@
         },
         {
             "name": "pressure squared per (force time per area)",
-            "description": null,
             "units": [
                 "pascal squared per pascal second",
                 "kilopascal squared per thousand centipoise",
@@ -2214,7 +2066,6 @@
         },
         {
             "name": "power per volume",
-            "description": null,
             "units": [
                 "watt per cubic metre",
                 "BTU per hour cubic foot",
@@ -2228,7 +2079,6 @@
         },
         {
             "name": "molecular weight",
-            "description": null,
             "units": [
                 "kilogram per mole",
                 "gram per mole",
@@ -2237,14 +2087,12 @@
         },
         {
             "name": "radiance",
-            "description": null,
             "units": [
                 "watt per square metre steradian"
             ]
         },
         {
             "name": "mass per time",
-            "description": null,
             "units": [
                 "kilogram per second",
                 "million pound-mass per julian-year",
@@ -2276,7 +2124,6 @@
         },
         {
             "name": "energy per area",
-            "description": null,
             "units": [
                 "joule per square metre",
                 "joule per square centimetre",
@@ -2290,7 +2137,6 @@
         },
         {
             "name": "force per length",
-            "description": null,
             "units": [
                 "newton per metre",
                 "pound-force per hundred foot",
@@ -2310,7 +2156,6 @@
         },
         {
             "name": "power per area",
-            "description": null,
             "units": [
                 "watt per square metre",
                 "(BTU per hour) per square foot",
@@ -2328,7 +2173,6 @@
         },
         {
             "name": "pressure squared",
-            "description": null,
             "units": [
                 "pascal squared",
                 "gigapascal squared",
@@ -2340,7 +2184,6 @@
         },
         {
             "name": "amount of substance",
-            "description": "molar amount of a substance",
             "units": [
                 "gram-mole",
                 "kilogram-mole",
@@ -2351,14 +2194,12 @@
         },
         {
             "name": "amount of substance per area",
-            "description": null,
             "units": [
                 "gram-mole per square metre"
             ]
         },
         {
             "name": "(amount of substance per time) per area",
-            "description": null,
             "units": [
                 "gram-mole per second square metre",
                 "pound-mass-mole per hour square foot",
@@ -2367,7 +2208,6 @@
         },
         {
             "name": "amount of substance per volume",
-            "description": "molar concentration of a substance",
             "units": [
                 "gram-mole per cubic metre",
                 "kilogram-mole per cubic metre",
@@ -2378,7 +2218,6 @@
         },
         {
             "name": "amount of substance per time",
-            "description": null,
             "units": [
                 "gram-mole per second",
                 "kilogram-mole per hour",
@@ -2389,14 +2228,12 @@
         },
         {
             "name": "solid angle",
-            "description": null,
             "units": [
                 "steradian"
             ]
         },
         {
             "name": "time",
-            "description": null,
             "units": [
                 "second",
                 "half of millisecond",
@@ -2426,7 +2263,6 @@
         },
         {
             "name": "time per length",
-            "description": null,
             "units": [
                 "second per metre",
                 "hour per thousand foot",
@@ -2449,7 +2285,6 @@
         },
         {
             "name": "time per volume",
-            "description": null,
             "units": [
                 "second per cubic metre",
                 "day per thousand cubic foot",
@@ -2466,14 +2301,12 @@
         },
         {
             "name": "time per mass",
-            "description": null,
             "units": [
                 "second per kilogram"
             ]
         },
         {
             "name": "mass per energy",
-            "description": null,
             "units": [
                 "kilogram per joule",
                 "kilogram per kilowatt hour",
@@ -2484,7 +2317,6 @@
         },
         {
             "name": "reciprocal force",
-            "description": null,
             "units": [
                 "per Newton",
                 "per pound-force"
@@ -2492,7 +2324,6 @@
         },
         {
             "name": "logarithmic power ratio",
-            "description": null,
             "units": [
                 "bel",
                 "decibel"
@@ -2500,7 +2331,6 @@
         },
         {
             "name": "normalized power",
-            "description": null,
             "units": [
                 "bel watt",
                 "decibel megawatt",
@@ -2510,7 +2340,6 @@
         },
         {
             "name": "attenuation per frequency interval",
-            "description": "A logarithmic, fractional change of some measure, generally power or amplitude, over a standard range. This is generally used for frequency attenuation over an octave.",
             "units": [
                 "bel per octave",
                 "decibel per octave"
@@ -2518,7 +2347,6 @@
         },
         {
             "name": "logarithmic power ratio per length",
-            "description": null,
             "units": [
                 "bel per metre",
                 "decibel per foot",
@@ -2528,14 +2356,12 @@
         },
         {
             "name": "frequency interval",
-            "description": "An octave is a doubling of a frequency.",
             "units": [
                 "octave"
             ]
         },
         {
             "name": "potential difference per power drop",
-            "description": null,
             "units": [
                 "volt per bel",
                 "volt per decibel"
@@ -2543,21 +2369,18 @@
         },
         {
             "name": "API gravity",
-            "description": null,
             "units": [
                 "API gravity unit"
             ]
         },
         {
             "name": "API gamma ray",
-            "description": "This class is defined by the API, and is used for units of gamma ray log response.",
             "units": [
                 "API gamma ray unit"
             ]
         },
         {
             "name": "API neutron",
-            "description": null,
             "units": [
                 "API neutron unit"
             ]
