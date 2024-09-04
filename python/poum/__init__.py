@@ -82,7 +82,7 @@ class Unit:
                 self.b_ == other.b_ and self.c_ == other.c_ and self.d_ == other.d_)
 
     def __hash__(self):
-        return (
+        return int(
                 1 * self.name_.__hash__() +
                 3 * self.symbol_.__hash__() +
                 7 * float(self.a_).__hash__() +
@@ -243,7 +243,7 @@ class UnitManager:
         else:
             return quantities[0]
 
-    def can_convert(self, unit1: 'Unit', unit2: 'Unit') -> bool:
+    def can_convert(self, unit1: Unit, unit2: Unit) -> bool:
         if unit1 is None or unit2 is None:
             raise ValueError("unit1 and unit2 cannot be null")
         quantities1 = self.find_quantities_by_unit(unit1)
