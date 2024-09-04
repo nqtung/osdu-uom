@@ -5,6 +5,15 @@ from typing import Optional, List, Sequence
 
 
 class Unit:
+    """
+    This class is used to represent a unit of measurement. It contains the conversion factors for converting to and from
+    the base unit of the quantity. The conversion factors are represented by the following formula:
+    y = (a * x + b) / (c * x + d)
+    where:
+    x is the value in the base unit
+    y is the value in this unit
+    a, b, c, and d are the conversion factors
+    """
     name_: str
     symbol_: str
     a_: Decimal
@@ -24,51 +33,74 @@ class Unit:
 
     @property
     def name(self) -> str:
+        """
+        Get the name of the unit
+        :return: name of the unit
+        """
         return self.name_
 
     @property
     def symbol(self) -> str:
+        """
+        Get the symbol of the unit
+        :return: symbol of the unit
+        """
         return self.symbol_
 
     @property
     def get_a(self) -> Decimal:
+        """
+        Get the conversion factor a
+        :return: conversion factor a
+        """
         return self.a_
 
     @property
     def get_b(self) -> Decimal:
+        """
+        Get the conversion factor b
+        :return: conversion factor b
+        """
         return self.b_
 
     @property
     def get_c(self) -> Decimal:
+        """
+        Get the conversion factor c
+        :return: conversion factor c
+        """
         return self.c_
 
     @property
     def get_d(self) -> Decimal:
+        """
+        Get the conversion factor d
+        :return: conversion factor d
+        """
         return self.d_
 
     @property
     def display_symbol(self) -> str:
+        """
+        Get the display symbol of the unit
+        :return: display symbol of the unit
+        """
         return self.display_symbol_
 
-    def set_a(self, a: Decimal):
-        self.a_ = a
-
-    def set_b(self, b: Decimal):
-        self.b_ = b
-
-    def set_c(self, c: Decimal):
-        self.c_ = c
-
-    def set_d(self, d: Decimal):
-        self.d_ = d
-
-    def set_display_symbol(self, display_symbol: str):
-        self.display_symbol_ = display_symbol
-
     def to_base(self, value: Decimal) -> Decimal:
+        """
+        Convert the value to the base unit
+        :param value: value to convert
+        :return: converted value
+        """
         return ((self.a_ * value) + self.b_) / ((self.c_ * value) + self.d_)
 
     def from_base(self, value: Decimal) -> Decimal:
+        """
+        Convert the value from the base unit
+        :param value: value to convert
+        :return: converted value
+        """
         return (self.b_ - (self.d_ * value)) / ((self.c_ * value) - self.a_)
 
     def __str__(self):
@@ -93,6 +125,10 @@ class Unit:
 
 
 class Quantity:
+    """
+    This class is used to represent a quantity of measurement. It contains the name of the quantity and the units that
+    are associated with the quantity.
+    """
     name_: str
     units_: list[Unit]
 
@@ -102,13 +138,26 @@ class Quantity:
 
     @property
     def name(self) -> str:
+        """
+        Get the name of the quantity
+        :return: name of the quantity
+        """
         return self.name_
 
     @property
     def units(self) -> list:
+        """
+        Get the units associated with the quantity
+        :return: units associated with the quantity
+        """
         return self.units_
 
     def add_unit(self, unit: Unit, is_base_unit: bool = False):
+        """
+        Add a unit to the quantity
+        :param unit: unit to add
+        :param is_base_unit: whether the unit is the base unit of the quantity
+        """
         if is_base_unit:
             self.units_.insert(0, unit)
         else:
@@ -116,6 +165,10 @@ class Quantity:
 
     @property
     def base_unit(self) -> Unit:
+        """
+        Get the base unit of the quantity
+        :return: base unit of the quantity
+        """
         return self.units_[0]
 
     def __str__(self):
@@ -125,6 +178,12 @@ class Quantity:
 
 
 class UnitManager:
+    """
+    This is main class for users to effectively use this library. It contains different methods to interact with the units,
+    tools to convert units, and methods to find quantities and units.
+
+    It is a singleton class, so it can be accessed using the get_instance() method.
+    """
     UNITS_FILE = "poum/uom.json"
     UNIT_ALIASES_FILE = "poum/unit_aliases.txt"
 
@@ -139,6 +198,10 @@ class UnitManager:
 
     @classmethod
     def get_instance(cls):
+        """
+        Get the singleton instance of the UnitManager class
+        :return: instance of the UnitManager class
+        """
         with cls._lock:
             if cls._instance is None:
                 cls._instance = cls()
