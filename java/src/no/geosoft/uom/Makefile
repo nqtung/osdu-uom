@@ -1,5 +1,4 @@
-Source = \
-	JsonWriter.java \
+Source    = \
 	Quantity.java \
 	Unit.java \
 	UnitManager.java \

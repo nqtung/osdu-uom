@@ -1,4 +1,4 @@
-ProjectDisplayName = UoM
+ProjectDisplayName = uom
 
 JavaPackages = \
         no/geosoft/uom \

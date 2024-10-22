@@ -21,7 +21,7 @@ unit database and has no external dependencies.
 
 ## Documentation
 
-Full JavaDoc documentation is available [here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/geosoft-as/juom/main/docs/index.html).
+Full JavaDoc documentation is available [here](https://htmlpreview.github.io/?https://raw.githubusercontent.com/geosoft-as/osdu-uom/main/java/docs/index.html).
 
 
 

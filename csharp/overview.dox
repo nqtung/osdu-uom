@@ -1,0 +1,266 @@
+/**
+* @mainpage
+*
+*
+*
+* When dealing with scientific data it is essential to know the units of
+* measurement in order to <em>understand</em> and present the information
+* correctly.
+* Likewise, in order to do <em>computations</em> with scientific data it is essential
+* that software is able to convert data into a common unit framework.
+*
+* The GeoSoft UoM library is a convenient, extensible front-end to the
+* OSDU Unit of Measure database.
+* It contains more than 250 different quantities and more than
+* 2500 unit definitions.
+* The API is simple, well documented and easy to use, and the library is trivial
+* to embed in any scientific software system.
+*
+* <p>
+* UoM is available for Java (<tt>Uom.jar</tt>) and .Net (<tt>Uom.dll</tt>).
+* The library is lightweight (&lt; 0.1MB) and self-contained; It embeds the complete
+* OSDU unit database and has no external dependencies.
+*
+*
+* <h2>Programming examples</h2>
+* <p>
+* The easiest way to get started with UoM is to explore the predefined
+* Energistics quantities and units:
+*
+* \code{.cs}
+*
+*   using GeoSoft.Uom;
+*   :
+*
+*   //
+*   // Get the unit manager singleton
+*   //
+*   UnitManager unitManager = UnitManager.GetInstance();
+*
+*   //
+*   // Get all pre-defined quantities and their units
+*   //
+*   List<Quantity> quantities = uniteManager.GetQuantities();
+*   foreach (Quantity quantity in quantities) {
+*     Console.WriteLine("Quantity: " + quantity.GetName() + " - " + quantity.GetDescription();
+*     foreach (Unit unit in quantity.GetUnits())
+*       Console.WriteLine("  Unit: " + unit.GetSymbol() + " (" + unit.GetName() + ")";
+*   }
+*
+* \endcode
+*
+* <br>
+* <p>
+* <b>Unit conversion</b>
+*
+* <p>
+* Basic unit conversion is done through <tt>UnitManager</tt>
+* using instances of <tt>Unit</tt> or the unit symbols directly:
+*
+* \code{.cs}
+*
+*   //
+*   // Convert between known units, using unit symbols directly
+*   //
+*   double milesPerHour = 55.0;
+*   double kilometersPerHour = unitManager.Convert("mi/h", "km/h", milesPerHour);
+*
+*   //
+*   // Conversion using Unit instances
+*   //
+*   Unit feet = unitManager.FindUnit("ft");
+*
+*   double lengthFt = 8981.0; // Length of the Golden Gate bridge in feet
+*
+*   Quantity quantity = unitManager.FindQuantity("length");
+*   foreach (Unit unit in quantity.GetUnits()) {
+*     double length = unitManager.Convert(feet, unit, lengthFt);
+*     Console.WriteLine("Golden Gate is " + length + " " + unit.GetSymbol());
+*   }
+*
+* \endcode
+*
+* <p>
+* Making a user interface units aware includes associating
+* GUI components with quantities and then provide unit conversions,
+* either per element or as overall preference settings.
+*
+* <p>
+* It is essential that the application knows the initial unit of measure
+* of the values involved. A common advice to reduce complexity and risk of errors
+* is to keep the entire data model in <em>base</em> units (typically SI or similar)
+* and convert in GUI only on users request. The associated units will then
+* be <em>implied</em>, effectively making the entire business logic <em>unitless</em>.
+* Conversions to and from base units can be performed directly on the <tt>Unit</tt> instances:
+*
+* \code{.cs}
+*
+*   //
+*   // Capture pressure display unit from GUI or preferences
+*   //
+*   Unit displayUnit = ...;
+*   string displaySymbol = displayUnit.getDisplaySymbol();
+*
+*   //
+*   // Populate GUI element
+*   //
+*   double pressure = ...; // From business model, SI implied
+*   pressureText.SetText(displayUnit.FromBase(pressure) + " [" + displaySymbol + "]");
+*
+*   :
+*
+*   //
+*   // Capture user input
+*   //
+*   double value = pressureText.GetValue(); // In user preferred unit
+*   double pressure = displayUnit.ToBase(value); // Converted to business model unit (SI)
+*
+* \endcode
+*
+* <p>
+* It may make sense to provide unit conversion even if the quantity of a measure
+* is unknown. In these cases it is possible to obtain the quantity, but it might
+* be more convenient to get all convertible units directly:
+*
+* \code{.cs}
+*
+*   //
+*   // Given a unit, find the associated quantity
+*   //
+*   string unitSymbol = "degC"; // Degrees Celsius
+*   Quantity quanitity = unitManager.FindQuantity(unitSymbol);
+*   IList<Unit> units = quantity.GetUnits(); // All temperature units
+*
+*   :
+*
+*   //
+*   // Given a unit, find all convertible units
+*   //
+*   string unitSymbol = "degC"; // Degrees Celsius
+*   IList<Unit> units = unitManager.FindConvertibleUnits(unitSymbol);
+*
+* \endcode
+*
+*
+* <br>
+* <p>
+* <b>Unit aliases</b>
+*
+* <p>
+* There is no universal accepted standard or convention for unit symbols, and
+* to make the module more robust when dealing with units from various sources
+* it is possible to add unit <em>aliases</em>. UoM uses the unit symbol defined
+* by Energistics, but have added many aliases for common notations.
+* In addition, client applications can supply their own:
+*
+* \code{.cs}
+*
+*   unitManager.AddUnitAlias("m/s^2", "m/s2");
+*   unitManager.AddUnitAlias("inch", "in");
+*   unitManager.AddUnitAlias("api", "gAPI");
+*   unitManager.AddUnitAlias("deg", "dega");
+*   :
+*
+* \endcode
+*
+* The typical approach would be to read these from a properties file during startup.
+*
+*
+* <br>
+* <p>
+* <b>Display symbols</b>
+*
+* <p>
+* Unit symbols should be regarded as <em>IDs</em>, and clients
+* should never expose these in a user interface. A GUI friendly <em>display symbol</em> may be
+* obtained through the <tt>Unit.GetDisplaySymbol()</tt> method.
+*
+* <p>
+* The table below indicates
+* the connection between <em>unit name</em>, <em>unit symbol</em> and <em>display symbol</em>:
+*
+* <table>
+*   <tr>
+*     <th>&nbsp;Unit name&nbsp;<br></th>
+*     <th>&nbsp;Unit symbol&nbsp;<br></th>
+*     <th>&nbsp;Display symbol&nbsp;<br></th>
+*   </tr>
+*   <tr>
+*     <td>&nbsp;microseconds per foot</td>
+*     <td>&nbsp;us/ft</td>
+*     <td>&nbsp;&micro;s/ft</td>
+*   </tr>
+*   <tr>
+*     <td>&nbsp;ohm meter</td>
+*     <td>&nbsp;ohmm</td>
+*     <td>&nbsp;&Omega;&middot;m</td>
+*   </tr>
+*   <tr>
+*     <td>&nbsp;cubic centimeters</td>
+*     <td>&nbsp;cm3</td>
+*     <td>&nbsp;cm<sup>3</sup></td>
+*   </tr>
+*   <tr>
+*     <td>&nbsp;degrees Celcius</td>
+*     <td>&nbsp;degC</td>
+*     <td>&nbsp;&deg;C</td>
+*   </tr>
+*   <tr>
+*     <td>&nbsp;meter/second squared</td>
+*     <td>&nbsp;m/s2</td>
+*     <td>&nbsp;m/s<sup>2</sup></td>
+*   </tr>
+*   <tr>
+*     <td>&nbsp;etc.</td>
+*     <td>&nbsp;</td>
+*     <td>&nbsp;</td>
+*   </tr>
+* </table>
+*
+*
+* <br>
+* <p>
+* <b>Extensibility</b>
+*
+* <p>
+* If the predefined set of quantities and units is not sufficient, a client may
+* easily supply their own:
+*
+*
+* \code{.cs}
+*
+*   //
+*   // Define "computer storage" quantity with associated units
+*   //
+*   Quantity q = new Quantity("computer storage");
+*   q.AddUnit(new Unit("byte", "byte", 1.0, 0.0, 0.0, 1.0, "byte"), true);
+*   q.AddUnit(new Unit("kilo byte", "kB", 1.0e3, 0.0, 0.0, 1.0, "kB"), false);
+*   q.AddUnit(new Unit("mega byte", "MB", 1.0e6, 0.0, 0.0, 1.0, "MB"), false);
+*   q.AddUnit(new Unit("giga byte", "GB", 1.0e9, 0.0, 0.0, 1.0, "GB"), false);
+*   :
+*   unitManager.AddQuantity(q);
+*
+*   //
+*   // Test the new units
+*   //
+*   long nBytes = 1230000L;
+*   double nMegaBytes = unitManager.Convert("byte", "MB", nBytes); // 1.23
+*
+* \endcode
+*
+* <p>
+* It is also possible to add units to existing quantities:
+*
+* \code{.cs}
+*
+*   //
+*   // Add "light year" unit to the existing "length" quantity
+*   //
+*   Quantity q = unitManager.FindQuantity("length");
+*   q.AddUnit(new Unit("light year", "ly", 9.4607e15, 0.0, 0.0, 1.0), false);
+*
+* \endcode
+* <br>
+* <br>
+*
+*/
