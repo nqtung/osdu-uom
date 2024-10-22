@@ -1,5 +1,7 @@
 package no.geosoft.uom;
 
+import java.util.Objects;
+
 /**
  * Model a unit, such as "ft", "m", "N", "Hz", "m/s" etc., and
  * how values converts to the base unit of the same quantity.
@@ -174,12 +176,7 @@ public final class Unit
   @Override
   public int hashCode()
   {
-    return  1 * name_.hashCode() +
-            3 * symbol_.hashCode() +
-            7 * Double.valueOf(a_).hashCode() +
-           11 * Double.valueOf(b_).hashCode() +
-           13 * Double.valueOf(c_).hashCode() +
-           17 * Double.valueOf(d_).hashCode();
+    return Objects.hash(name_, symbol_, a_, b_, c_, d_);
   }
 
   /** {@inheritDoc} */
@@ -219,6 +216,6 @@ public final class Unit
   @Override
   public String toString()
   {
-    return name_ + " [" + symbol_ + "]" + " a=" + a_ + " b=" + b_ + " c=" + c_ + " d=" + d_;
+    return name_ + " (" + symbol_ + ")" + " [" + displaySymbol_ + "]" + " a=" + a_ + " b=" + b_ + " c=" + c_ + " d=" + d_;
   }
 }

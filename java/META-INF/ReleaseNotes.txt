@@ -1,0 +1,5 @@
+1.01 06.08.2024
+o Moved to GitHub
+
+1.00 27.10.2023
+o Initial release

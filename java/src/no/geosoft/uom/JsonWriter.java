@@ -166,7 +166,6 @@ public final class JsonWriter
 
     JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
     add(objectBuilder, "name", quantity.getName());
-    add(objectBuilder, "description", quantity.getDescription());
 
     JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
     for (Unit unit : quantity.getUnits())
@@ -215,7 +214,7 @@ public final class JsonWriter
     JsonObjectBuilder objectBuilder = Json.createObjectBuilder();
     add(objectBuilder, "name", unit.getName());
     add(objectBuilder, "symbol", symbol);
-    add(objectBuilder, "displaySymbol", unitManager.getDisplaySymbol(symbol));
+    add(objectBuilder, "displaySymbol", unit.getDisplaySymbol());
     add(objectBuilder, "a", unit.getA());
     add(objectBuilder, "b", unit.getB());
     add(objectBuilder, "c", unit.getC());
