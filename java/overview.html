@@ -1,6 +1,6 @@
 <body>
 
-  juom - Java library for handling units of measurement.
+  Java library for handling units of measurement.
 
   <h1>Overview</h1>
 
@@ -154,7 +154,7 @@ for (Unit unit : quantity.getUnits()) {
 //
 // Capture pressure display unit from GUI or prefernces
 //
-Unit diplsayUnit = ...;
+Unit displayUnit = ...;
 String displaySymbol = unitManager.getDisplaySymbol(diplsayUnit.getSymbol());
 
 //
@@ -176,8 +176,8 @@ double pressure = displayUnit.toBase(value); // Converted to business model unit
 <div style='background:#FFFFee; font-family: Courier New, Courier; font-size: 10pt; COLOR: #000000; padding: 10px;'><font color='#3f7f5f'>//
 </font><br/><font color='#3f7f5f'>//&nbsp;Capture&nbsp;pressure&nbsp;display&nbsp;unit&nbsp;from&nbsp;GUI&nbsp;or&nbsp;prefernces
 </font><br/><font color='#3f7f5f'>//
-</font><br/>Unit&nbsp;diplsayUnit&nbsp;=&nbsp;...;
-<br/>String&nbsp;displaySymbol&nbsp;=&nbsp;unitManager.getDisplaySymbol(diplsayUnit.getSymbol());
+</font><br/>Unit&nbsp;displayUnit&nbsp;=&nbsp;...;
+<br/>String&nbsp;displaySymbol&nbsp;=&nbsp;unit.getDisplaySymbol();
 <br/>
 <br/><font color='#3f7f5f'>//
 </font><br/><font color='#3f7f5f'>//&nbsp;Populate&nbsp;GUI&nbsp;element
@@ -345,10 +345,6 @@ unitManager.addUnitAlias("deg", "dega");
   </tr>
 </table>
 </blockquote>
-
-
-  As for unit aliases, it is possible for clients to supply their own
-  specific display symbols through the <tt>UnitManager.setDisplaySymbol()</tt> method.
 
 
   <br>
