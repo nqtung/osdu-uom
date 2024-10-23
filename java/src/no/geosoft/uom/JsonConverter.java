@@ -23,7 +23,7 @@ import javax.json.JsonReader;
  *
  * @author <a href="mailto:jacob.dreyer@geosoft.no">Jacob Dreyer</a>
  */
-public final class JsonConverter
+final class JsonConverter
 {
   /**
    * Return the specified string value as a double.

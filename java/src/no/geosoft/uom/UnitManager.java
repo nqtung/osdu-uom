@@ -550,7 +550,7 @@ public final class UnitManager
    *
    * @param arguments  Application argumenst. Not used.
    */
-  public static void main(String[] arguments)
+  private static void main(String[] arguments)
   {
     Unit unit = UnitManager.getInstance().findUnit("ohm.m");
     List<Quantity> quantities = UnitManager.getInstance().findQuantities(unit);

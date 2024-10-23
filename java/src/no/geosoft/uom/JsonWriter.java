@@ -29,7 +29,7 @@ import javax.json.stream.JsonGenerator;
  *
  * @author <a href="mailto:jacob.dreyer@geosoft.no">Jacob Dreyer</a>
  */
-public final class JsonWriter
+final class JsonWriter
 {
   /**
    * Private constructor to prevent client instantiation.
