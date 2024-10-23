@@ -18,19 +18,25 @@ import javax.json.stream.JsonGenerator;
 import javax.json.JsonReader;
 
 /**
- * Class that converts the original Energistics v1.01 standard into the
- * simpler GeoSoft counterpart.
+ * Program that converts the original Energistics v1.01 standard into the
+ * simpler GeoSoft version.
  *
  * @author <a href="mailto:jacob.dreyer@geosoft.no">Jacob Dreyer</a>
  */
 public final class JsonConverter
 {
-  public JsonConverter()
-  {
-  }
-
+  /**
+   * Return the specified string value as a double.
+   * Handle special string like "PI", "2*PI" and "4*PI" as these
+   * are used in the original standard.
+   *
+   * @param value  Value to get as double. Non-null.
+   * @return       Associated double.
+   */
   private static double getValue(String value)
   {
+    assert value != null : "value cannot be null";
+
     if (value.equals("PI"))
       return Math.PI;
 
@@ -49,8 +55,18 @@ public final class JsonConverter
     }
   }
 
+  /**
+   * Find unit instance of the specified symbol.
+   *
+   * @param units   Units to search. Non-null.
+   * @param symbol  Unit symbol to find unit of. Non-null.
+   * @return        Requested unit, or null if not found.
+   */
   private static Unit findUnit(Set<Unit> units, String symbol)
   {
+    assert units != null : "units cannot be null";
+    assert symbol != null : "symbol cannot be null";
+
     for (Unit unit : units) {
       if (unit.getSymbol().equals(symbol))
         return unit;
@@ -60,6 +76,12 @@ public final class JsonConverter
     return null;
   }
 
+  /**
+   * Test program that reads the Energistics UoM standard and populates units and
+   * quantities for further processing.
+   *
+   * @param arguments  Application arguments. Not used.
+   */
   public static void main(String[] arguments)
   {
     Set<Unit> units = new HashSet<>();

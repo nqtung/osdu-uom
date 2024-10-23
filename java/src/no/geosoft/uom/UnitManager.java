@@ -545,6 +545,11 @@ public final class UnitManager
     return s.toString();
   }
 
+  /**
+   * Testing this class.
+   *
+   * @param arguments  Application argumenst. Not used.
+   */
   public static void main(String[] arguments)
   {
     Unit unit = UnitManager.getInstance().findUnit("ohm.m");

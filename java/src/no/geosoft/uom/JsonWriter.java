@@ -24,6 +24,11 @@ import javax.json.JsonStructure;
 import javax.json.JsonWriterFactory;
 import javax.json.stream.JsonGenerator;
 
+/**
+ * Class for writing the content of UnitManager to a JSON file.
+ *
+ * @author <a href="mailto:jacob.dreyer@geosoft.no">Jacob Dreyer</a>
+ */
 public final class JsonWriter
 {
   /**
@@ -242,6 +247,13 @@ public final class JsonWriter
     return arrayBuilder;
   }
 
+  /**
+   * Get units and quantities as a JSON object builder instance.
+   *
+   * @param unit        Units to get. Non-null.
+   * @param quantities  Quantities to get. Non-null.
+   * @return            Units and quantities as a JSON object builder. Never null.
+   */
   private static JsonObjectBuilder getAll(Collection<Unit> units, Collection<Quantity> quantities)
   {
     assert units != null : "units cannot be null";
@@ -254,6 +266,12 @@ public final class JsonWriter
     return objectBuilder;
   }
 
+  /**
+   * Testing this class.
+   *
+   * @param arguments  Application arguments. Not used.
+   * @throws Exception  If something fails in the process.
+   */
   public static void main(String[] arguments)
     throws Exception
   {
