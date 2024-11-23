@@ -214,6 +214,19 @@ public final class UnitManager
   }
 
   /**
+   * Convenience method for getting the display symbol of the specified
+   * unit symbol.
+   *
+   * @param unitSymbol  Unit symbol to get display symbol of. May be null for unitless.
+   * @return            Associated display symbol. Never null.
+   */
+  public String getDisplaySymbol(String unitSymbol)
+  {
+    Unit unit = findUnit(unitSymbol);
+    return unit != null ? unit.getDiplsaySymbol() : unitSymbol;
+  }
+
+  /**
    * Return all units that are convertible with the specified unit.
    *
    * @param unit  Unit to consider. Non-null.
