@@ -1,13 +1,11 @@
-# GeoSoft.Uom - Units of measurement library for .Net
+# UoM - Units of measurement library for .Net
 
 When dealing with scientific data it is essential to know the units of
 measurement in order to _understand_ and present the information correctly.
 Likewise, in order to do _computations_ with scientific data it is essential
 that software is able to convert data into a common unit framework.
 
-The GeoSoft.Uom library is a convenient, extensible front-end to
-[uom.json](/standard/uom.json) which itself is a simplified
-view of the
+The GeoSoft UoM library is a convenient, extensible front-end to
 [OSDU/Energistics Unit of Measure](https://energistics.org/energisticsr-consortium-publishes-new-version-its-unit-measure-standard).
 It contains more than
 250 different quantities with more than

@@ -223,7 +223,7 @@ public final class UnitManager
   public String getDisplaySymbol(String unitSymbol)
   {
     Unit unit = findUnit(unitSymbol);
-    return unit != null ? unit.getDiplsaySymbol() : unitSymbol;
+    return unit != null ? unit.getDisplaySymbol() : unitSymbol;
   }
 
   /**

@@ -1,10 +1,21 @@
-# *poum* - Units of measurement library for Python
+# UoM - Units of measurement library for Python
 
-When dealing with scientific data it is essential to know the units of measurement in order to understand and present the information correctly. Likewise, in order to do computations with scientific data it is essential that software is able to convert data into a common unit framework.
+When dealing with scientific data it is essential to know the units of
+measurement in order to understand and present the information correctly.
+Likewise, in order to do computations with scientific data it is essential
+that software is able to convert data into a common unit framework.
 
-*poum* is a convenient, extensible front-end to osdu-uom which itself is a simplified view of the OSDU/Energistics Unit of Measure. It contains more than 250 different quantities with more than 2500 unit definitions. The API is simple, well documented and easy to use, and the library is trivial to embed in any scientific software system.
+The GeoSoft UoM library is a convenient, extensible front-end to
+[OSDU/Energistics Unit of Measure](https://energistics.org/energisticsr-consortium-publishes-new-version-its-unit-measure-standard).
+It contains more than
+250 different quantities with more than
+2500 unit definitions.
+The API is simple, well documented and easy to use, and the library is trivial
+to embed in any scientific software system.
 
-The library is lightweight and self-contained; It embeds the complete unit database and has no external dependencies.
+The library is lightweight and self-contained; It embeds the complete
+unit database and has no external dependencies.
+
 
 ## Example Usage
 
