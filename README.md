@@ -25,7 +25,18 @@ instead of the common but less readable _degC_, _uohm_, or _m3_ etc.
 
 The present repository contains the following:
 
-* `standard/uom.json`   A list of all units and quantities of the Energistics/OSDU UoM standard
+* `standard/uom.json`   The complete list of quantities, units and conversion factors as
+                        defined by the Energistics/OSDU UoM standard
+
+In addition there are APIs for a wide range of programming environments:
+
+* [Java](java/README.md)
+
+* [Python](python/README.md)
+
+* [C#](csharp/README.md)
+
+* [JavaScript](javascript/README.md)
 
 
 
@@ -74,6 +85,7 @@ baseValue = (a * value + b) / (c * value + d)
 ```
 
 
+
 ## Display units
 
 Unit symbols should be regarded as _IDs_ suitable for persistent storage etc., but clients
@@ -88,22 +100,3 @@ is provided with every unit, such as:
 | cubic centimeters     | cm3         | cm<sup>3</sup>   |
 | degrees Celcius       | degC        | &deg;C           |
 | meter/second squared  | m/s2        | m/s<sup>2</sup>  |
-
-
-
-## Access libraries
-
-The repository contains access libraries for UoM for different programming environments:
-
-* [Java](java/README.md)
-
-* [Python](python/README.md)
-
-* [C#](csharp/README.md)
-
-* [JavaScript](javascript/README.md)
-
-
-
-
-
