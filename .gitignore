@@ -1,3 +1,4 @@
 # C# compiled code
 bin/
 obj/
+**/osdu-uom.jar

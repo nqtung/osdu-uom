@@ -839,7 +839,8 @@
                 "millimetre per julian-year",
                 "millimetre per second",
                 "nanometre per second",
-                "micrometre per second"
+                "micrometre per second",
+                "minutes per kilometre"
             ]
         },
         {
@@ -11719,6 +11720,15 @@
             "b": 0.0,
             "c": 0.0,
             "d": 3.6
+        },
+        {
+            "name": "minutes per kilometre",
+            "symbol": "min/km",
+            "displaySymbol": "min/km",
+            "a": 0.0,
+            "b": 50.0,
+            "c": 3.0,
+            "d": 0.0
         },
         {
             "name": "UK ton-force",
